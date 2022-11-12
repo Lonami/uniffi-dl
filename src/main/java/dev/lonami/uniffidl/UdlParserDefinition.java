@@ -26,12 +26,12 @@ public class UdlParserDefinition implements ParserDefinition {
 
     @Override
     public @NotNull TokenSet getCommentTokens() {
-        return TokenSet.EMPTY;
+        return UdlTokenSets.COMMENTS;
     }
 
     @Override
     public @NotNull TokenSet getStringLiteralElements() {
-        return TokenSet.EMPTY;
+        return UdlTokenSets.STRINGS;
     }
 
     @Override
