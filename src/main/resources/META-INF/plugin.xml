@@ -5,7 +5,7 @@
 
     <!-- Public plugin name should be written in Title Case.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
-    <name>Uniffi-dl</name>
+    <name>Uniffi-DL</name>
 
     <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
     <vendor email="support@yourcompany.com" url="https://www.yourcompany.com">YourCompany</vendor>
@@ -25,6 +25,11 @@
     <!-- Extension points defined by the plugin.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
-
+        <fileType
+                name="UDL File"
+                implementationClass="dev.lonami.uniffidl.UdlFileType"
+                fieldName="INSTANCE"
+                language="Uniffi-DL"
+                extensions="udl"/>
     </extensions>
 </idea-plugin>
