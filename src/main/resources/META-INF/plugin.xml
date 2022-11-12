@@ -35,5 +35,9 @@
         <lang.parserDefinition
                 language="Uniffi-DL"
                 implementationClass="dev.lonami.uniffidl.UdlParserDefinition"/>
+
+        <lang.syntaxHighlighterFactory
+                language="Uniffi-DL"
+                implementationClass="dev.lonami.uniffidl.UdlSyntaxHighlighterFactory"/>
     </extensions>
 </idea-plugin>
