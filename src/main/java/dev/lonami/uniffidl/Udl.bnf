@@ -13,6 +13,74 @@
   tokenTypeClass="dev.lonami.uniffidl.psi.UdlTokenType"
 
   tokens=[
+      op_open_paren="("
+      op_close_paren=")"
+      op_wildcard="*"
+      op_separator=","
+      op_neg="-"
+      kw_neginf="-Infinity"
+      op_dot="."
+      op_ellipsis="..."
+      op_colon=":"
+      op_semicolon=";"
+      op_lessthan="<"
+      op_equals="="
+      op_greaterthan=">"
+      op_nullable="?"
+      kw_posinf="Infinity"
+      kw_nan="NaN"
+      op_open_bracket="["
+      op_close_bracket="]"
+      kw_any="any"
+      kw_async="async"
+      kw_attribute="attribute"
+      kw_bigint="bigint"
+      kw_boolean="boolean"
+      kw_byte="byte"
+      kw_callback="callback"
+      kw_const="const"
+      kw_constructor="constructor"
+      kw_deleter="deleter"
+      kw_dictionary="dictionary"
+      kw_double="double"
+      kw_enum="enum"
+      kw_false="false"
+      kw_float="float"
+      kw_getter="getter"
+      kw_includes="includes"
+      kw_inherit="inherit"
+      kw_interface="interface"
+      kw_iterable="iterable"
+      kw_long="long"
+      kw_maplike="maplike"
+      kw_mixin="mixin"
+      kw_namespace="namespace"
+      kw_null="null"
+      kw_object="object"
+      kw_octet="octet"
+      kw_optional="optional"
+      kw_or="or"
+      kw_partial="partial"
+      kw_readonly="readonly"
+      kw_record="record"
+      kw_required="required"
+      kw_sequence="sequence"
+      kw_setlike="setlike"
+      kw_setter="setter"
+      kw_short="short"
+      kw_static="static"
+      kw_string="string"
+      kw_stringifier="stringifier"
+      kw_symbol="symbol"
+      kw_true="true"
+      kw_typedef="typedef"
+      kw_undefined="undefined"
+      kw_unrestricted="unrestricted"
+      kw_unsigned="unsigned"
+      op_open_brace="{"
+      op_pipe="|"
+      op_close_brace="}"
+
       integer='regexp:-?([1-9][0-9]*|0[Xx][0-9A-Fa-f]+|0[0-7]*)'
       decimal='regexp:-?(([0-9]+\.[0-9]*|[0-9]*\.[0-9]+)([Ee][+-]?[0-9]+)?|[0-9]+[Ee][+-]?[0-9]+)'
       identifier='regexp:[_-]?[A-Za-z][0-9A-Z_a-z-]*'
@@ -20,7 +88,6 @@
       whitespace='regexp:[\t\n\r ]+'
       comment='regexp://.*|/\*(.|\n)*?\*/'
       alt='regexp:[^\t\n\r 0-9A-Za-z]'
-      nothing=''
   ]
 }
 
@@ -39,48 +106,48 @@ Definition ::=
     | IncludesStatement
 
 ArgumentNameKeyword ::=
-    "async"
-    | "attribute"
-    | "callback"
-    | "const"
-    | "constructor"
-    | "deleter"
-    | "dictionary"
-    | "enum"
-    | "getter"
-    | "includes"
-    | "inherit"
-    | "interface"
-    | "iterable"
-    | "maplike"
-    | "mixin"
-    | "namespace"
-    | "partial"
-    | "readonly"
-    | "required"
-    | "setlike"
-    | "setter"
-    | "static"
-    | "stringifier"
-    | "typedef"
-    | "unrestricted"
+    kw_async
+    | kw_attribute
+    | kw_callback
+    | kw_const
+    | kw_constructor
+    | kw_deleter
+    | kw_dictionary
+    | kw_enum
+    | kw_getter
+    | kw_includes
+    | kw_inherit
+    | kw_interface
+    | kw_iterable
+    | kw_maplike
+    | kw_mixin
+    | kw_namespace
+    | kw_partial
+    | kw_readonly
+    | kw_required
+    | kw_setlike
+    | kw_setter
+    | kw_static
+    | kw_stringifier
+    | kw_typedef
+    | kw_unrestricted
 
 CallbackOrInterfaceOrMixin ::=
-    "callback" CallbackRestOrInterface
-    | "interface" InterfaceOrMixin
+    kw_callback CallbackRestOrInterface
+    | kw_interface InterfaceOrMixin
 
 InterfaceOrMixin ::=
     InterfaceRest
     | MixinRest
 
 InterfaceRest ::=
-    identifier Inheritance "{" InterfaceMembers "}" ";"
+    identifier Inheritance op_open_brace InterfaceMembers op_close_brace op_semicolon
 
 Partial ::=
-    "partial" PartialDefinition
+    kw_partial PartialDefinition
 
 PartialDefinition ::=
-    "interface" PartialInterfaceOrPartialMixin
+    kw_interface PartialInterfaceOrPartialMixin
     | PartialDictionary
     | Namespace
 
@@ -89,7 +156,7 @@ PartialInterfaceOrPartialMixin ::=
     | MixinRest
 
 PartialInterfaceRest ::=
-    identifier "{" PartialInterfaceMembers "}" ";"
+    identifier op_open_brace PartialInterfaceMembers op_close_brace op_semicolon
 
 InterfaceMembers ::=
     (ExtendedAttributeList InterfaceMember InterfaceMembers)?
@@ -115,10 +182,10 @@ PartialInterfaceMember ::=
     | InheritAttribute
 
 Inheritance ::=
-    (":" identifier)?
+    (op_colon identifier)?
 
 MixinRest ::=
-    "mixin" identifier "{" MixinMembers "}" ";"
+    kw_mixin identifier op_open_brace MixinMembers op_close_brace op_semicolon
 
 MixinMembers ::=
     (ExtendedAttributeList MixinMember MixinMembers)?
@@ -130,11 +197,11 @@ MixinMember ::=
     | OptionalReadOnly AttributeRest
 
 IncludesStatement ::=
-    identifier "includes" identifier ";"
+    identifier kw_includes identifier op_semicolon
 
 CallbackRestOrInterface ::=
     CallbackRest
-    | "interface" identifier "{" CallbackInterfaceMembers "}" ";"
+    | kw_interface identifier op_open_brace CallbackInterfaceMembers op_close_brace op_semicolon
 
 CallbackInterfaceMembers ::=
     (ExtendedAttributeList CallbackInterfaceMember CallbackInterfaceMembers)?
@@ -144,7 +211,7 @@ CallbackInterfaceMember ::=
     | RegularOperation
 
 Const ::=
-    "const" ConstType identifier "=" ConstValue ";"
+    kw_const ConstType identifier op_equals ConstValue op_semicolon
 
 ConstValue ::=
     BooleanLiteral
@@ -152,21 +219,21 @@ ConstValue ::=
     | integer
 
 BooleanLiteral ::=
-    "true"
-    | "false"
+    kw_true
+    | kw_false
 
 FloatLiteral ::=
     decimal
-    | "-Infinity"
-    | "Infinity"
-    | "NaN"
+    | kw_neginf
+    | kw_posinf
+    | kw_nan
 
 ConstType ::=
     PrimitiveType
     | identifier
 
 ReadOnlyMember ::=
-    "readonly" ReadOnlyMemberRest
+    kw_readonly ReadOnlyMemberRest
 
 ReadOnlyMemberRest ::=
     AttributeRest
@@ -177,29 +244,29 @@ ReadWriteAttribute ::=
     AttributeRest
 
 InheritAttribute ::=
-    "inherit" AttributeRest
+    kw_inherit AttributeRest
 
 AttributeRest ::=
-    "attribute" TypeWithExtendedAttributes AttributeName ";"
+    kw_attribute TypeWithExtendedAttributes AttributeName op_semicolon
 
 AttributeName ::=
     AttributeNameKeyword
     | identifier
 
 AttributeNameKeyword ::=
-    "async"
-    | "required"
+    kw_async
+    | kw_required
 
 OptionalReadOnly ::=
-    ("readonly")?
+    (kw_readonly)?
 
 DefaultValue ::=
     ConstValue
-    | "string"
-    | "[ ]"
-    | " "
-    | "null"
-    | "undefined"
+    | kw_string
+    | op_open_bracket op_close_bracket
+    | op_open_brace op_close_brace
+    | kw_null
+    | kw_undefined
 
 Operation ::=
     RegularOperation
@@ -212,12 +279,12 @@ SpecialOperation ::=
     Special RegularOperation
 
 Special ::=
-    "getter"
-    | "setter"
-    | "deleter"
+    kw_getter
+    | kw_setter
+    | kw_deleter
 
 OperationRest ::=
-    OptionalOperationName "(" ArgumentList ")" ";"
+    OptionalOperationName op_open_paren ArgumentList op_close_paren op_semicolon
 
 OptionalOperationName ::=
     (OperationName)?
@@ -227,19 +294,19 @@ OperationName ::=
     | identifier
 
 OperationNameKeyword ::=
-    "includes"
+    kw_includes
 
 ArgumentList ::=
     (Argument Arguments)?
 
 Arguments ::=
-    ("," Argument Arguments)?
+    (op_separator Argument Arguments)?
 
 Argument ::=
     ExtendedAttributeList ArgumentRest
 
 ArgumentRest ::=
-    "optional" TypeWithExtendedAttributes ArgumentName Default
+    kw_optional TypeWithExtendedAttributes ArgumentName Default
     | Type Ellipsis ArgumentName
 
 ArgumentName ::=
@@ -247,62 +314,62 @@ ArgumentName ::=
     | identifier
 
 Ellipsis ::=
-    ("...")?
+    (op_ellipsis)?
 
 Constructor ::=
-    "constructor" "(" ArgumentList ")" ";"
+    kw_constructor op_open_paren ArgumentList op_close_paren op_semicolon
 
 Stringifier ::=
-    "stringifier" StringifierRest
+    kw_stringifier StringifierRest
 
 StringifierRest ::=
     OptionalReadOnly AttributeRest
-    | ";"
+    | op_semicolon
 
 StaticMember ::=
-    "static" StaticMemberRest
+    kw_static StaticMemberRest
 
 StaticMemberRest ::=
     OptionalReadOnly AttributeRest
     | RegularOperation
 
 Iterable ::=
-    "iterable" "<" TypeWithExtendedAttributes OptionalType ">" ";"
+    kw_iterable op_lessthan TypeWithExtendedAttributes OptionalType op_greaterthan op_semicolon
 
 OptionalType ::=
-    ("," TypeWithExtendedAttributes)?
+    (op_separator TypeWithExtendedAttributes)?
 
 AsyncIterable ::=
-    "async" "iterable" "<" TypeWithExtendedAttributes OptionalType ">" OptionalArgumentList ";"
+    kw_async kw_iterable op_lessthan TypeWithExtendedAttributes OptionalType op_greaterthan OptionalArgumentList op_semicolon
 
 OptionalArgumentList ::=
-    ("(" ArgumentList ")")?
+    (op_open_paren ArgumentList op_close_paren)?
 
 ReadWriteMaplike ::=
     MaplikeRest
 
 MaplikeRest ::=
-    "maplike" "<" TypeWithExtendedAttributes "," TypeWithExtendedAttributes ">" ";"
+    kw_maplike op_lessthan TypeWithExtendedAttributes op_separator TypeWithExtendedAttributes op_greaterthan op_semicolon
 
 ReadWriteSetlike ::=
     SetlikeRest
 
 SetlikeRest ::=
-    "setlike" "<" TypeWithExtendedAttributes ">" ";"
+    kw_setlike op_lessthan TypeWithExtendedAttributes op_greaterthan op_semicolon
 
 Namespace ::=
-    "namespace" identifier "{" NamespaceMembers "}" ";"
+    kw_namespace identifier op_open_brace NamespaceMembers op_close_brace op_semicolon
 
 NamespaceMembers ::=
     (ExtendedAttributeList NamespaceMember NamespaceMembers)?
 
 NamespaceMember ::=
     RegularOperation
-    | "readonly" AttributeRest
+    | kw_readonly AttributeRest
     | Const
 
 Dictionary ::=
-    "dictionary" "identifier" Inheritance "{" DictionaryMembers "}" ";"
+    kw_dictionary identifier Inheritance op_open_brace DictionaryMembers op_close_brace op_semicolon
 
 DictionaryMembers ::=
     (DictionaryMember DictionaryMembers)?
@@ -311,32 +378,32 @@ DictionaryMember ::=
     ExtendedAttributeList DictionaryMemberRest
 
 DictionaryMemberRest ::=
-    "required" TypeWithExtendedAttributes identifier ";"
-    | Type identifier Default ";"
+    kw_required TypeWithExtendedAttributes identifier op_semicolon
+    | Type identifier Default op_semicolon
 
 PartialDictionary ::=
-    "dictionary" identifier "{" DictionaryMembers "}" ";"
+    kw_dictionary identifier op_open_brace DictionaryMembers op_close_brace op_semicolon
 
 Default ::=
-    ("=" DefaultValue)?
+    (op_equals DefaultValue)?
 
 Enum ::=
-    "enum" identifier "{" EnumValueList "}" ";"
+    kw_enum identifier op_open_brace EnumValueList op_close_brace op_semicolon
 
 EnumValueList ::=
-    "string" EnumValueListComma
+    kw_string EnumValueListComma
 
 EnumValueListComma ::=
-    ("," EnumValueListString)?
+    (op_separator EnumValueListString)?
 
 EnumValueListString ::=
-    ("string" EnumValueListComma)?
+    (kw_string EnumValueListComma)?
 
 CallbackRest ::=
-    identifier "=" Type "(" ArgumentList ")" ";"
+    identifier op_equals Type op_open_paren ArgumentList op_close_paren op_semicolon
 
 Typedef ::=
-    "typedef" TypeWithExtendedAttributes identifier ";"
+    kw_typedef TypeWithExtendedAttributes identifier op_semicolon
 
 Type ::=
     SingleType
@@ -347,58 +414,58 @@ TypeWithExtendedAttributes ::=
 
 SingleType ::=
     DistinguishableType
-    | "any"
+    | kw_any
     | PromiseType
 
 UnionType ::=
-    "(" UnionMemberType "or" UnionMemberType UnionMemberTypes ")"
+    op_open_paren UnionMemberType kw_or UnionMemberType UnionMemberTypes op_close_paren
 
 UnionMemberType ::=
     ExtendedAttributeList DistinguishableType
     | UnionType Null
 
 UnionMemberTypes ::=
-    ("or" UnionMemberType UnionMemberTypes)?
+    (kw_or UnionMemberType UnionMemberTypes)?
 
 DistinguishableType ::=
     PrimitiveType Null
     | StringType Null
     | identifier Null
-    | "sequence" "<" TypeWithExtendedAttributes ">" Null
-    | "object" Null
-    | "symbol" Null
+    | kw_sequence op_lessthan TypeWithExtendedAttributes op_greaterthan Null
+    | kw_object Null
+    | kw_symbol Null
     | BufferRelatedType Null
-    | "FrozenArray" "<" TypeWithExtendedAttributes ">" Null
-    | "ObservableArray" "<" TypeWithExtendedAttributes ">" Null
+    | "FrozenArray" op_lessthan TypeWithExtendedAttributes op_greaterthan Null
+    | "ObservableArray" op_lessthan TypeWithExtendedAttributes op_greaterthan Null
     | RecordType Null
-    | "undefined" Null
+    | kw_undefined Null
 
 PrimitiveType ::=
     UnsignedIntegerType
     | UnrestrictedFloatType
-    | "boolean"
-    | "byte"
-    | "octet"
-    | "bigint"
+    | kw_boolean
+    | kw_byte
+    | kw_octet
+    | kw_bigint
 
 UnrestrictedFloatType ::=
-    "unrestricted" FloatType
+    kw_unrestricted FloatType
     | FloatType
 
 FloatType ::=
-    "float"
-    | "double"
+    kw_float
+    | kw_double
 
 UnsignedIntegerType ::=
-    "unsigned" IntegerType
+    kw_unsigned IntegerType
     | IntegerType
 
 IntegerType ::=
-    "short"
-    | "long" OptionalLong
+    kw_short
+    | kw_long OptionalLong
 
 OptionalLong ::=
-    ("long")?
+    (kw_long)?
 
 StringType ::=
     "ByteString"
@@ -406,13 +473,13 @@ StringType ::=
     | "USVString"
 
 PromiseType ::=
-    "Promise" "<" Type ">"
+    "Promise" op_lessthan Type op_greaterthan
 
 RecordType ::=
-    "record" "<" StringType "," TypeWithExtendedAttributes ">"
+    kw_record op_lessthan StringType op_separator TypeWithExtendedAttributes op_greaterthan
 
 Null ::=
-    ("?")?
+    (op_nullable)?
 
 BufferRelatedType ::=
     "ArrayBuffer"
@@ -430,25 +497,25 @@ BufferRelatedType ::=
     | "Float64Array"
 
 ExtendedAttributeList ::=
-    ("[" ExtendedAttribute ExtendedAttributes "]")?
+    (op_open_bracket ExtendedAttribute ExtendedAttributes op_close_bracket)?
 
 ExtendedAttributes ::=
-    ("," ExtendedAttribute ExtendedAttributes)?
+    (op_separator ExtendedAttribute ExtendedAttributes)?
 
 ExtendedAttribute ::=
-    "(" ExtendedAttributeInner ")" ExtendedAttributeRest
-    | "[" ExtendedAttributeInner "]" ExtendedAttributeRest
-    | "{" ExtendedAttributeInner "}" ExtendedAttributeRest
+    op_open_paren ExtendedAttributeInner op_close_paren ExtendedAttributeRest
+    | op_open_bracket ExtendedAttributeInner op_close_bracket ExtendedAttributeRest
+    | op_open_brace ExtendedAttributeInner op_close_brace ExtendedAttributeRest
     | Other ExtendedAttributeRest
 
 ExtendedAttributeRest ::=
     (ExtendedAttribute)?
 
 ExtendedAttributeInner ::=
-    ("(" ExtendedAttributeInner ")" ExtendedAttributeInner
-    | "[" ExtendedAttributeInner "]" ExtendedAttributeInner
-    | "|" "{" ExtendedAttributeInner "}" ExtendedAttributeInner
-    | "|" OtherOrComma ExtendedAttributeInner)?
+    (op_open_paren ExtendedAttributeInner op_close_paren ExtendedAttributeInner
+    | op_open_bracket ExtendedAttributeInner op_close_bracket ExtendedAttributeInner
+    | op_pipe op_open_brace ExtendedAttributeInner op_close_brace ExtendedAttributeInner
+    | op_pipe OtherOrComma ExtendedAttributeInner)?
 
 Other ::=
     integer
@@ -456,72 +523,72 @@ Other ::=
     | identifier
     | string
     | alt
-    | "-"
-    | "-Infinity"
-    | "."
-    | "..."
-    | ":"
-    | ";"
-    | "<"
-    | "="
-    | ">"
-    | "?"
-    | "*"
+    | op_neg
+    | kw_neginf
+    | op_dot
+    | op_ellipsis
+    | op_colon
+    | op_semicolon
+    | op_lessthan
+    | op_equals
+    | op_greaterthan
+    | op_nullable
+    | op_wildcard
     | "ByteString"
     | "DOMString"
     | "FrozenArray"
-    | "Infinity"
-    | "NaN"
+    | kw_posinf
+    | kw_nan
     | "ObservableArray"
     | "Promise"
     | "USVString"
-    | "any"
-    | "bigint"
-    | "boolean"
-    | "byte"
-    | "double"
-    | "false"
-    | "float"
-    | "long"
-    | "null"
-    | "object"
-    | "octet"
-    | "or"
-    | "optional"
-    | "record"
-    | "sequence"
-    | "short"
-    | "symbol"
-    | "true"
-    | "unsigned"
-    | "undefined"
+    | kw_any
+    | kw_bigint
+    | kw_boolean
+    | kw_byte
+    | kw_double
+    | kw_false
+    | kw_float
+    | kw_long
+    | kw_null
+    | kw_object
+    | kw_octet
+    | kw_or
+    | kw_optional
+    | kw_record
+    | kw_sequence
+    | kw_short
+    | kw_symbol
+    | kw_true
+    | kw_unsigned
+    | kw_undefined
     | ArgumentNameKeyword
     | BufferRelatedType
 
 OtherOrComma ::=
     Other
-    | ","
+    | op_separator
 
 IdentifierList ::=
     identifier Identifiers
 
 Identifiers ::=
-    ("," identifier Identifiers)?
+    (op_separator identifier Identifiers)?
 
 ExtendedAttributeNoArgs ::=
     identifier
 
 ExtendedAttributeArgList ::=
-    identifier "(" ArgumentList ")"
+    identifier op_open_paren ArgumentList op_close_paren
 
 ExtendedAttributeIdent ::=
-    identifier "=" identifier
+    identifier op_equals identifier
 
 ExtendedAttributeWildcard ::=
-    identifier "=" "*"
+    identifier op_equals op_wildcard
 
 ExtendedAttributeIdentList ::=
-    identifier "=" "(" IdentifierList ")"
+    identifier op_equals op_open_paren IdentifierList op_close_paren
 
 ExtendedAttributeNamedArgList ::=
-    identifier "=" identifier "(" ArgumentList ")"
+    identifier op_equals identifier op_open_paren ArgumentList op_close_paren
