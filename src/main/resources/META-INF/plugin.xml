@@ -31,5 +31,9 @@
                 fieldName="INSTANCE"
                 language="Uniffi-DL"
                 extensions="udl"/>
+
+        <lang.parserDefinition
+                language="Uniffi-DL"
+                implementationClass="dev.lonami.uniffidl.UdlParserDefinition"/>
     </extensions>
 </idea-plugin>
