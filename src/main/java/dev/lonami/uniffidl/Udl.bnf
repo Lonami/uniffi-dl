@@ -1,0 +1,14 @@
+{
+  parserClass="dev.lonami.uniffidl.parser.UdlParser"
+
+  extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+  psiClassPrefix="Udl"
+  psiImplClassSuffix="Impl"
+  psiPackage="dev.lonami.uniffidl.psi"
+  psiImplPackage="dev.lonami.uniffidl.psi.impl"
+
+  elementTypeHolderClass="dev.lonami.uniffidl.psi.UdlTypes"
+  elementTypeClass="dev.lonami.uniffidl.psi.UdlElementType"
+  tokenTypeClass="dev.lonami.uniffidl.psi.UdlTokenType"
+}
