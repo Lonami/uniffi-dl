@@ -10,6 +10,7 @@ import com.intellij.psi.PsiWhiteSpace;
 import com.intellij.psi.search.FileTypeIndex;
 import com.intellij.psi.search.GlobalSearchScope;
 import com.intellij.psi.util.PsiTreeUtil;
+import dev.lonami.uniffidl.psi.UdlDefinition;
 import dev.lonami.uniffidl.psi.UdlDictionary;
 import dev.lonami.uniffidl.psi.UdlFile;
 import org.jetbrains.annotations.NotNull;
@@ -22,7 +23,7 @@ public class UdlUtil {
      * Search the entire project for dictionary definitions matching the given key.
      *
      * @param project haystack
-     * @param key needle
+     * @param key     needle
      * @return matching dictionaries
      */
     public static List<UdlDictionary> findDictionaries(Project project, String key) {
@@ -32,11 +33,11 @@ public class UdlUtil {
         for (VirtualFile virtualFile : virtualFiles) {
             UdlFile udlFile = (UdlFile) PsiManager.getInstance(project).findFile(virtualFile);
             if (udlFile != null) {
-                UdlDictionary[] dictionaries = PsiTreeUtil.getChildrenOfType(udlFile, UdlDictionary.class);
-                if (dictionaries != null) {
-                    for (UdlDictionary dict : dictionaries) {
-                        if (key.equals(dict.getName())) {
-                            result.add(dict);
+                UdlDefinition[] definitions = PsiTreeUtil.getChildrenOfType(udlFile, UdlDefinition.class);
+                if (definitions != null) {
+                    for (UdlDefinition definition : definitions) {
+                        if (definition.getDictionary() != null && key.equals(definition.getDictionary().getName())) {
+                            result.add(definition.getDictionary());
                         }
                     }
                 }
@@ -53,9 +54,13 @@ public class UdlUtil {
         for (VirtualFile virtualFile : virtualFiles) {
             UdlFile udlFile = (UdlFile) PsiManager.getInstance(project).findFile(virtualFile);
             if (udlFile != null) {
-                UdlDictionary[] dictionaries = PsiTreeUtil.getChildrenOfType(udlFile, UdlDictionary.class);
-                if (dictionaries != null) {
-                    Collections.addAll(result, dictionaries);
+                UdlDefinition[] definitions = PsiTreeUtil.getChildrenOfType(udlFile, UdlDefinition.class);
+                if (definitions != null) {
+                    for (UdlDefinition definition : definitions) {
+                        if (definition.getDictionary() != null) {
+                            result.add(definition.getDictionary());
+                        }
+                    }
                 }
             }
         }
