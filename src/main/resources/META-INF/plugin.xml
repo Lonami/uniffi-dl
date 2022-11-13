@@ -51,5 +51,9 @@
         <psi.referenceContributor
                 language="Uniffi-DL"
                 implementation="dev.lonami.uniffidl.UdlReferenceContributor"/>
+
+        <lang.findUsagesProvider
+                language="Uniffi-DL"
+                implementationClass="dev.lonami.uniffidl.UdlFindUsagesProvider"/>
     </extensions>
 </idea-plugin>
