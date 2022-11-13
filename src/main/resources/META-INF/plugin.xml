@@ -43,5 +43,9 @@
         <annotator
                 language="Uniffi-DL"
                 implementationClass="dev.lonami.uniffidl.UdlAnnotator"/>
+
+        <completion.contributor
+                language="Uniffi-DL"
+                implementationClass="dev.lonami.uniffidl.UdlCompletionContributor"/>
     </extensions>
 </idea-plugin>
