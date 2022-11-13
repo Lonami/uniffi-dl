@@ -4,13 +4,10 @@ import com.intellij.lang.ASTNode;
 import com.intellij.lang.folding.FoldingBuilderEx;
 import com.intellij.lang.folding.FoldingDescriptor;
 import com.intellij.openapi.editor.Document;
-import com.intellij.openapi.editor.FoldingGroup;
 import com.intellij.openapi.project.DumbAware;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.util.PsiTreeUtil;
 import dev.lonami.uniffidl.psi.UdlDefinition;
-import dev.lonami.uniffidl.psi.UdlDictionary;
-import dev.lonami.uniffidl.psi.UdlNamespace;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

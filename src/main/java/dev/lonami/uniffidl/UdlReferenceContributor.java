@@ -1,14 +1,10 @@
 package dev.lonami.uniffidl;
 
 import com.intellij.patterns.PlatformPatterns;
-import com.intellij.psi.PsiLiteralValue;
-import com.intellij.psi.PsiReferenceContributor;
-import com.intellij.psi.PsiReferenceRegistrar;
-import dev.lonami.uniffidl.psi.UdlDictionary;
-import org.jetbrains.annotations.NotNull;
-
 import com.intellij.psi.*;
 import com.intellij.util.ProcessingContext;
+import dev.lonami.uniffidl.psi.UdlDictionary;
+import org.jetbrains.annotations.NotNull;
 
 public class UdlReferenceContributor extends PsiReferenceContributor {
     @Override
