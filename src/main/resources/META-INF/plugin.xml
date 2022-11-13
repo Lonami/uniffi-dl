@@ -47,5 +47,9 @@
         <completion.contributor
                 language="Uniffi-DL"
                 implementationClass="dev.lonami.uniffidl.UdlCompletionContributor"/>
+
+        <psi.referenceContributor
+                language="Uniffi-DL"
+                implementation="dev.lonami.uniffidl.UdlReferenceContributor"/>
     </extensions>
 </idea-plugin>

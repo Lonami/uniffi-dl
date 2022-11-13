@@ -370,7 +370,11 @@ NamespaceMember ::=
     | Const
 
 Dictionary ::=
-    kw_dictionary identifier Inheritance op_open_brace DictionaryMembers op_close_brace op_semicolon {methods=[getName]}
+    kw_dictionary identifier Inheritance op_open_brace DictionaryMembers op_close_brace op_semicolon {
+        mixin="dev.lonami.uniffidl.psi.impl.UdlNamedElementImpl"
+        implements="dev.lonami.uniffidl.psi.UdlNamedElement"
+        methods=[getNameIdentifier getName setName]
+    }
 
 DictionaryMembers ::=
     (DictionaryMember DictionaryMembers)?
