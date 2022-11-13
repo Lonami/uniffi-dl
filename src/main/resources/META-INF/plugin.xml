@@ -39,5 +39,9 @@
         <lang.syntaxHighlighterFactory
                 language="Uniffi-DL"
                 implementationClass="dev.lonami.uniffidl.UdlSyntaxHighlighterFactory"/>
+
+        <annotator
+                language="Uniffi-DL"
+                implementationClass="dev.lonami.uniffidl.UdlAnnotator"/>
     </extensions>
 </idea-plugin>
