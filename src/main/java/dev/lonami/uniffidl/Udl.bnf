@@ -7,6 +7,7 @@
   psiImplClassSuffix="Impl"
   psiPackage="dev.lonami.uniffidl.psi"
   psiImplPackage="dev.lonami.uniffidl.psi.impl"
+  psiImplUtilClass="dev.lonami.uniffidl.psi.impl.UdlPsiImplUtil"
 
   elementTypeHolderClass="dev.lonami.uniffidl.psi.UdlTypes"
   elementTypeClass="dev.lonami.uniffidl.psi.UdlElementType"
@@ -369,7 +370,7 @@ NamespaceMember ::=
     | Const
 
 Dictionary ::=
-    kw_dictionary identifier Inheritance op_open_brace DictionaryMembers op_close_brace op_semicolon
+    kw_dictionary identifier Inheritance op_open_brace DictionaryMembers op_close_brace op_semicolon {methods=[getName]}
 
 DictionaryMembers ::=
     (DictionaryMember DictionaryMembers)?
