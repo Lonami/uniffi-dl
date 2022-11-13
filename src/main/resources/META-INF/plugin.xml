@@ -55,5 +55,9 @@
         <lang.findUsagesProvider
                 language="Uniffi-DL"
                 implementationClass="dev.lonami.uniffidl.UdlFindUsagesProvider"/>
+
+        <lang.foldingBuilder
+                language="Uniffi-DL"
+                implementationClass="dev.lonami.uniffidl.UdlFoldingBuilder"/>
     </extensions>
 </idea-plugin>
