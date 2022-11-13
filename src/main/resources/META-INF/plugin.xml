@@ -59,5 +59,8 @@
         <lang.foldingBuilder
                 language="Uniffi-DL"
                 implementationClass="dev.lonami.uniffidl.UdlFoldingBuilder"/>
+
+        <gotoSymbolContributor
+                implementation="dev.lonami.uniffidl.UdlChooseByNameContributor"/>
     </extensions>
 </idea-plugin>
