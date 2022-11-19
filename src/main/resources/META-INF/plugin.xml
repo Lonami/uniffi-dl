@@ -72,5 +72,9 @@
         <lang.formatter
                 language="Uniffi-DL"
                 implementationClass="dev.lonami.uniffidl.UdlFormattingModelBuilder"/>
+
+        <lang.commenter
+                language="Uniffi-DL"
+                implementationClass="dev.lonami.uniffidl.UdlCommenter"/>
     </extensions>
 </idea-plugin>
