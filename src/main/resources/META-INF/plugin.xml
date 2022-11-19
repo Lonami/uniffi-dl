@@ -62,5 +62,9 @@
 
         <gotoSymbolContributor
                 implementation="dev.lonami.uniffidl.UdlChooseByNameContributor"/>
+
+        <lang.psiStructureViewFactory
+                language="Uniffi-DL"
+                implementationClass="dev.lonami.uniffidl.UdlStructureViewFactory"/>
     </extensions>
 </idea-plugin>

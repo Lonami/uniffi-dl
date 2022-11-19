@@ -53,18 +53,27 @@ public class UdlUtil {
         Collection<VirtualFile> virtualFiles = FileTypeIndex.getFiles(UdlFileType.INSTANCE, GlobalSearchScope.allScope(project));
         for (VirtualFile virtualFile : virtualFiles) {
             UdlFile udlFile = (UdlFile) PsiManager.getInstance(project).findFile(virtualFile);
-            if (udlFile != null) {
-                UdlDefinition[] definitions = PsiTreeUtil.getChildrenOfType(udlFile, UdlDefinition.class);
-                if (definitions != null) {
-                    for (UdlDefinition definition : definitions) {
-                        if (definition.getDictionary() != null) {
-                            result.add(definition.getDictionary());
-                        }
+            result = findDictionaries(udlFile, result);
+        }
+
+        return result;
+    }
+
+    public static List<UdlDictionary> findDictionaries(UdlFile udlFile, List<UdlDictionary> result) {
+        if (result == null) {
+            result = new ArrayList<>();
+        }
+
+        if (udlFile != null) {
+            UdlDefinition[] definitions = PsiTreeUtil.getChildrenOfType(udlFile, UdlDefinition.class);
+            if (definitions != null) {
+                for (UdlDefinition definition : definitions) {
+                    if (definition.getDictionary() != null) {
+                        result.add(definition.getDictionary());
                     }
                 }
             }
         }
-
         return result;
     }
 
