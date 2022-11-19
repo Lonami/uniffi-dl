@@ -68,5 +68,9 @@
                 implementationClass="dev.lonami.uniffidl.UdlStructureViewFactory"/>
 
         <navbar implementation="dev.lonami.uniffidl.UdlStructureAwareNavbar"/>
+
+        <lang.formatter
+                language="Uniffi-DL"
+                implementationClass="dev.lonami.uniffidl.UdlFormattingModelBuilder"/>
     </extensions>
 </idea-plugin>
