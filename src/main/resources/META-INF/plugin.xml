@@ -66,5 +66,7 @@
         <lang.psiStructureViewFactory
                 language="Uniffi-DL"
                 implementationClass="dev.lonami.uniffidl.UdlStructureViewFactory"/>
+
+        <navbar implementation="dev.lonami.uniffidl.UdlStructureAwareNavbar"/>
     </extensions>
 </idea-plugin>
