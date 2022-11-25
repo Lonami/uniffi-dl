@@ -8,14 +8,17 @@
     <name>Uniffi-DL</name>
 
     <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
-    <vendor email="support@yourcompany.com" url="https://www.yourcompany.com">YourCompany</vendor>
+    <vendor email="gh@lonami.dev" url="https://lonami.dev">Lonami</vendor>
 
     <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
          Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
     <description><![CDATA[
-    Enter short description for your plugin here.<br>
-    <em>most HTML tags may be used</em>
+    Unofficial plugin which provides syntax highlighting, code folding, code completion, reference resolution and
+    navigation (among others features) for the <a href="https://mozilla.github.io/uniffi-rs/">UniFFI Definition
+    Language (UDL)</a>, a variant of <a href="https://webidl.spec.whatwg.org/">WebIDL</a> specifically tailored
+    for the <a href="https://github.com/mozilla/uniffi-rs/">UniFFI tool</a> to "generate foreign-language bindings
+    targeting Rust libraries".
   ]]></description>
 
     <!-- Product and plugin compatibility requirements.
