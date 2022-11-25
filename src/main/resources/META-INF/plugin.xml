@@ -76,5 +76,9 @@
         <lang.commenter
                 language="Uniffi-DL"
                 implementationClass="dev.lonami.uniffidl.UdlCommenter"/>
+
+        <lang.documentationProvider
+                language="Uniffi-DL"
+                implementationClass="dev.lonami.uniffidl.UdlDocumentationProvider"/>
     </extensions>
 </idea-plugin>

@@ -16,7 +16,10 @@ import dev.lonami.uniffidl.psi.UdlFile;
 import org.jetbrains.annotations.NotNull;
 import org.jsoup.helper.StringUtil;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
 
 public class UdlUtil {
     /**
@@ -86,12 +89,12 @@ public class UdlUtil {
     public static @NotNull String findDocumentationComment(UdlDictionary dictionary) {
         List<String> result = new LinkedList<>();
 
-        PsiElement element = dictionary.getPrevSibling();
+        PsiElement element = dictionary.getParent().getPrevSibling().getPrevSibling();
         while (element instanceof PsiComment || element instanceof PsiWhiteSpace) {
             if (element instanceof PsiComment) {
                 String commentText = element.getText().replaceFirst("/[/*]+", "");
                 int len = commentText.length();
-                if (commentText.charAt(len - 1) == '/' && commentText.charAt(len - 2) == '*') {
+                if (len >= 2 && commentText.charAt(len - 1) == '/' && commentText.charAt(len - 2) == '*') {
                     len -= 2;
                     while (commentText.charAt(len) == '*') {
                         len -= 1;
