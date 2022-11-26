@@ -104,7 +104,11 @@ Definition ::=
     | Dictionary
     | Enum
     | Typedef
-    | IncludesStatement
+    | IncludesStatement {
+        mixin="dev.lonami.uniffidl.psi.impl.UdlNamedElementImpl"
+        implements="dev.lonami.uniffidl.psi.UdlNamedElement"
+        methods=[getNameIdentifier getName setName getPresentation]
+    }
 
 ArgumentNameKeyword ::=
     KW_ASYNC
@@ -370,11 +374,7 @@ NamespaceMember ::=
     | Const
 
 Dictionary ::=
-    KW_DICTIONARY identifier Inheritance OP_OPEN_BRACE DictionaryMembers OP_CLOSE_BRACE OP_SEMICOLON {
-        mixin="dev.lonami.uniffidl.psi.impl.UdlNamedElementImpl"
-        implements="dev.lonami.uniffidl.psi.UdlNamedElement"
-        methods=[getNameIdentifier getName setName getPresentation]
-    }
+    KW_DICTIONARY identifier Inheritance OP_OPEN_BRACE DictionaryMembers OP_CLOSE_BRACE OP_SEMICOLON
 
 DictionaryMembers ::=
     (DictionaryMember DictionaryMembers)?

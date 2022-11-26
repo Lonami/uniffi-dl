@@ -12,7 +12,6 @@ import com.intellij.psi.search.FileTypeIndex;
 import com.intellij.psi.search.GlobalSearchScope;
 import com.intellij.psi.util.PsiTreeUtil;
 import dev.lonami.uniffidl.psi.UdlDefinition;
-import dev.lonami.uniffidl.psi.UdlDictionary;
 import dev.lonami.uniffidl.psi.UdlFile;
 import org.jetbrains.annotations.NotNull;
 
@@ -22,15 +21,23 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class UdlUtil {
+    private static boolean isTypeDefinition(UdlDefinition definition) {
+        return definition.getTypedef() != null || definition.getDictionary() != null || definition.getEnum() != null;
+    }
+
+    protected static String getDefinitionTypeText(UdlDefinition definition) {
+        return definition.getFirstChild().getFirstChild().getText();
+    }
+
     /**
-     * Search the entire project for dictionary definitions matching the given key.
+     * Search the entire project for type definitions (typedef, dictionary or enum) matching the given key.
      *
      * @param project haystack
      * @param key     needle
-     * @return matching dictionaries
+     * @return matching definitions
      */
-    public static List<UdlDictionary> findDictionaries(Project project, String key) {
-        List<UdlDictionary> result = new ArrayList<>();
+    public static List<UdlDefinition> findTypeDefinitions(Project project, String key) {
+        List<UdlDefinition> result = new ArrayList<>();
 
         Collection<VirtualFile> virtualFiles = FileTypeIndex.getFiles(UdlFileType.INSTANCE, GlobalSearchScope.allScope(project));
         for (VirtualFile virtualFile : virtualFiles) {
@@ -39,8 +46,8 @@ public class UdlUtil {
                 UdlDefinition[] definitions = PsiTreeUtil.getChildrenOfType(udlFile, UdlDefinition.class);
                 if (definitions != null) {
                     for (UdlDefinition definition : definitions) {
-                        if (definition.getDictionary() != null && key.equals(definition.getDictionary().getName())) {
-                            result.add(definition.getDictionary());
+                        if (isTypeDefinition(definition) && key.equals(definition.getName())) {
+                            result.add(definition);
                         }
                     }
                 }
@@ -50,19 +57,19 @@ public class UdlUtil {
         return result;
     }
 
-    public static List<UdlDictionary> findDictionaries(Project project) {
-        List<UdlDictionary> result = new ArrayList<>();
+    public static List<UdlDefinition> findTypeDefinitions(Project project) {
+        List<UdlDefinition> result = new ArrayList<>();
 
         Collection<VirtualFile> virtualFiles = FileTypeIndex.getFiles(UdlFileType.INSTANCE, GlobalSearchScope.allScope(project));
         for (VirtualFile virtualFile : virtualFiles) {
             UdlFile udlFile = (UdlFile) PsiManager.getInstance(project).findFile(virtualFile);
-            result = findDictionaries(udlFile, result);
+            result = findTypeDefinitions(udlFile, result);
         }
 
         return result;
     }
 
-    public static List<UdlDictionary> findDictionaries(UdlFile udlFile, List<UdlDictionary> result) {
+    public static List<UdlDefinition> findTypeDefinitions(UdlFile udlFile, List<UdlDefinition> result) {
         if (result == null) {
             result = new ArrayList<>();
         }
@@ -71,8 +78,8 @@ public class UdlUtil {
             UdlDefinition[] definitions = PsiTreeUtil.getChildrenOfType(udlFile, UdlDefinition.class);
             if (definitions != null) {
                 for (UdlDefinition definition : definitions) {
-                    if (definition.getDictionary() != null) {
-                        result.add(definition.getDictionary());
+                    if (isTypeDefinition(definition)) {
+                        result.add(definition);
                     }
                 }
             }
@@ -81,15 +88,15 @@ public class UdlUtil {
     }
 
     /**
-     * Attempt to collect any comment elements above the dictionary into a string.
+     * Attempt to collect any comment elements above the definition into a string.
      *
-     * @param dictionary point before which to search for comments
+     * @param definition point before which to search for comments
      * @return comments' contents
      */
-    public static @NotNull String findDocumentationComment(UdlDictionary dictionary) {
+    public static @NotNull String findDocumentationComment(UdlDefinition definition) {
         List<String> result = new LinkedList<>();
 
-        PsiElement element = dictionary.getParent().getPrevSibling().getPrevSibling();
+        PsiElement element = definition.getPrevSibling().getPrevSibling();
         while (element instanceof PsiComment || element instanceof PsiWhiteSpace) {
             if (element instanceof PsiComment) {
                 String commentText = element.getText().replaceFirst("/[/*]+", "");

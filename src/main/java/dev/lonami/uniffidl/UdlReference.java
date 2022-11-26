@@ -5,7 +5,7 @@ import com.intellij.codeInsight.lookup.LookupElementBuilder;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.*;
-import dev.lonami.uniffidl.psi.UdlDictionary;
+import dev.lonami.uniffidl.psi.UdlDefinition;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -23,10 +23,10 @@ public class UdlReference extends PsiReferenceBase<PsiElement> implements PsiPol
     @Override
     public ResolveResult @NotNull [] multiResolve(boolean incompleteCode) {
         Project project = myElement.getProject();
-        final List<UdlDictionary> dictionaries = UdlUtil.findDictionaries(project, key);
+        final List<UdlDefinition> definitions = UdlUtil.findTypeDefinitions(project, key);
         List<ResolveResult> results = new ArrayList<>();
-        for (UdlDictionary dictionary : dictionaries) {
-            results.add(new PsiElementResolveResult(dictionary));
+        for (UdlDefinition definition : definitions) {
+            results.add(new PsiElementResolveResult(definition));
         }
         return results.toArray(new ResolveResult[0]);
     }
@@ -40,13 +40,13 @@ public class UdlReference extends PsiReferenceBase<PsiElement> implements PsiPol
     @Override
     public Object @NotNull [] getVariants() {
         Project project = myElement.getProject();
-        List<UdlDictionary> dictionaries = UdlUtil.findDictionaries(project);
+        List<UdlDefinition> definitions = UdlUtil.findTypeDefinitions(project);
         List<LookupElement> variants = new ArrayList<>();
-        for (final UdlDictionary dictionary : dictionaries) {
-            if (dictionary.getName() != null && !dictionary.getName().isEmpty()) {
-                variants.add(LookupElementBuilder.create(dictionary)
+        for (final UdlDefinition definition : definitions) {
+            if (definition.getName() != null && !definition.getName().isEmpty()) {
+                variants.add(LookupElementBuilder.create(definition)
                         .withIcon(UdlIcons.FILE)
-                        .withTypeText(dictionary.getContainingFile().getName()));
+                        .withTypeText(definition.getContainingFile().getName()));
             }
         }
         return variants.toArray();

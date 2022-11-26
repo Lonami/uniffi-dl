@@ -1,10 +1,10 @@
 package dev.lonami.uniffidl;
 
-import com.intellij.icons.AllIcons;
 import com.intellij.ide.navigationToolbar.StructureAwareNavBarModelExtension;
 import com.intellij.lang.Language;
-import dev.lonami.uniffidl.psi.UdlDictionary;
+import dev.lonami.uniffidl.psi.UdlDefinition;
 import dev.lonami.uniffidl.psi.UdlFile;
+import dev.lonami.uniffidl.psi.impl.UdlPsiImplUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -22,8 +22,8 @@ public class UdlStructureAwareNavbar extends StructureAwareNavBarModelExtension 
         if (object instanceof UdlFile) {
             return ((UdlFile) object).getName();
         }
-        if (object instanceof UdlDictionary) {
-            return ((UdlDictionary) object).getName();
+        if (object instanceof UdlDefinition) {
+            return ((UdlDefinition) object).getName();
         }
 
         return null;
@@ -31,8 +31,8 @@ public class UdlStructureAwareNavbar extends StructureAwareNavBarModelExtension 
 
     @Override
     public @Nullable Icon getIcon(Object object) {
-        if (object instanceof UdlDictionary) {
-            return AllIcons.Nodes.Class;
+        if (object instanceof UdlDefinition) {
+            return UdlPsiImplUtil.getPresentation((UdlDefinition) object).getIcon(false);
         }
 
         return null;

@@ -4,7 +4,7 @@ import com.intellij.lang.documentation.AbstractDocumentationProvider;
 import com.intellij.lang.documentation.DocumentationMarkup;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.presentation.java.SymbolPresentationUtil;
-import dev.lonami.uniffidl.psi.UdlDictionary;
+import dev.lonami.uniffidl.psi.UdlDefinition;
 import org.jetbrains.annotations.Nls;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -12,13 +12,12 @@ import org.jetbrains.annotations.Nullable;
 public class UdlDocumentationProvider extends AbstractDocumentationProvider {
     @Override
     public @Nullable @Nls String generateDoc(PsiElement element, @Nullable PsiElement originalElement) {
-        if (element instanceof UdlDictionary) {
-            UdlDictionary dictionary = (UdlDictionary) element;
-            final String name = dictionary.getIdentifier().getText();
+        if (element instanceof UdlDefinition) {
+            UdlDefinition definition = (UdlDefinition) element;
+            final String name = definition.getName();
             final String file = SymbolPresentationUtil.getFilePathPresentation(element.getContainingFile());
-            final String docComment = UdlUtil.findDocumentationComment(dictionary);
-            return renderFullDoc(name, file, docComment);
-
+            final String docComment = UdlUtil.findDocumentationComment(definition);
+            return renderFullDoc(UdlUtil.getDefinitionTypeText(definition), name, file, docComment);
         }
         return null;
     }
@@ -30,19 +29,19 @@ public class UdlDocumentationProvider extends AbstractDocumentationProvider {
 
     @Override
     public @Nullable @Nls String getQuickNavigateInfo(PsiElement element, PsiElement originalElement) {
-        if (element instanceof UdlDictionary) {
-            UdlDictionary dictionary = (UdlDictionary) element;
-            final String name = dictionary.getIdentifier().getText();
+        if (element instanceof UdlDefinition) {
+            UdlDefinition definition = (UdlDefinition) element;
+            final String name = definition.getName();
             final String file = SymbolPresentationUtil.getFilePathPresentation(element.getContainingFile());
             return "'" + name + "' in " + file;
         }
         return null;
     }
 
-    private String renderFullDoc(String name, String file, String docComment) {
+    private String renderFullDoc(String type, String name, String file, String docComment) {
         StringBuilder sb = new StringBuilder();
         sb.append(DocumentationMarkup.DEFINITION_START);
-        sb.append("Dictionary");
+        sb.append(type);
         sb.append(DocumentationMarkup.DEFINITION_END);
         sb.append(DocumentationMarkup.CONTENT_START);
         sb.append(name);

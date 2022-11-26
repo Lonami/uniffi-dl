@@ -6,10 +6,9 @@ import com.intellij.ide.util.treeView.smartTree.SortableTreeElement;
 import com.intellij.ide.util.treeView.smartTree.TreeElement;
 import com.intellij.navigation.ItemPresentation;
 import com.intellij.psi.NavigatablePsiElement;
-import com.intellij.psi.util.PsiTreeUtil;
-import dev.lonami.uniffidl.psi.UdlDictionary;
+import dev.lonami.uniffidl.psi.UdlDefinition;
 import dev.lonami.uniffidl.psi.UdlFile;
-import dev.lonami.uniffidl.psi.impl.UdlDictionaryImpl;
+import dev.lonami.uniffidl.psi.impl.UdlDefinitionImpl;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -57,10 +56,10 @@ public class UdlStructureViewElement implements StructureViewTreeElement, Sortab
     @Override
     public TreeElement @NotNull [] getChildren() {
         if (myElement instanceof UdlFile) {
-            List<UdlDictionary> dictionaries = UdlUtil.findDictionaries((UdlFile) myElement, null);
-            List<TreeElement> treeElements = new ArrayList<>(dictionaries.size());
-            for (UdlDictionary dictionary : dictionaries) {
-                treeElements.add(new UdlStructureViewElement((UdlDictionaryImpl) dictionary));
+            List<UdlDefinition> definitions = UdlUtil.findTypeDefinitions((UdlFile) myElement, null);
+            List<TreeElement> treeElements = new ArrayList<>(definitions.size());
+            for (UdlDefinition definition : definitions) {
+                treeElements.add(new UdlStructureViewElement((UdlDefinitionImpl) definition));
             }
             return treeElements.toArray(new TreeElement[0]);
         }

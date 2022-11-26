@@ -7,7 +7,6 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import dev.lonami.uniffidl.UdlIcons;
 import dev.lonami.uniffidl.psi.UdlDefinition;
-import dev.lonami.uniffidl.psi.UdlDictionary;
 import dev.lonami.uniffidl.psi.UdlElementFactory;
 import dev.lonami.uniffidl.psi.UdlTypes;
 import org.jetbrains.annotations.Nullable;
@@ -15,29 +14,28 @@ import org.jetbrains.annotations.Nullable;
 import javax.swing.*;
 
 public class UdlPsiImplUtil {
-    public static PsiElement getNameIdentifier(PsiElement element) {
-        ASTNode node = element.getNode().findChildByType(UdlTypes.IDENTIFIER);
+    public static PsiElement getNameIdentifier(UdlDefinition element) {
+        ASTNode node = element.getFirstChild().getNode().findChildByType(UdlTypes.IDENTIFIER);
         return node != null ? node.getPsi() : null;
     }
 
-    public static String getName(PsiElement element) {
-        ASTNode node = element.getNode().findChildByType(UdlTypes.IDENTIFIER);
-        return node != null ? node.getText() : null;
+    public static String getName(UdlDefinition element) {
+        PsiElement nameIdentifier = getNameIdentifier(element);
+        return nameIdentifier == null ? "" : nameIdentifier.getText();
     }
 
-    public static PsiElement setName(UdlDictionary element, String newName) {
-        ASTNode node = element.getNode().findChildByType(UdlTypes.IDENTIFIER);
-        if (node != null) {
-            UdlDictionary dictionary = UdlElementFactory.createDictionary(element.getProject(), newName);
-            PsiElement nameIdentifier = dictionary.getNameIdentifier();
-            if (nameIdentifier != null) {
-                element.getNode().replaceChild(node, nameIdentifier.getNode());
-            }
+    public static PsiElement setName(UdlDefinition element, String newName) {
+        PsiElement nameIdentifier = getNameIdentifier(element);
+        if (nameIdentifier != null) {
+            element.getFirstChild().getNode().replaceChild(
+                    nameIdentifier.getNode(),
+                    UdlElementFactory.createIdentifier(newName).getNode()
+            );
         }
         return element;
     }
 
-    public static ItemPresentation getPresentation(final UdlDictionary element) {
+    public static ItemPresentation getPresentation(final UdlDefinition element) {
         return new ItemPresentation() {
             @Override
             public @Nullable String getPresentableText() {
@@ -52,7 +50,15 @@ public class UdlPsiImplUtil {
 
             @Override
             public @Nullable Icon getIcon(boolean unused) {
-                return UdlIcons.FILE;
+                if (element.getTypedef() != null) {
+                    return UdlIcons.TYPE_DEF;
+                } else if (element.getDictionary() != null) {
+                    return UdlIcons.DICTIONARY;
+                } else if (element.getEnum() != null) {
+                    return UdlIcons.ENUM;
+                } else {
+                    return null;
+                }
             }
         };
     }

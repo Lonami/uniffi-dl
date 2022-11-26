@@ -33,26 +33,7 @@ public class UdlFoldingBuilder extends FoldingBuilderEx implements DumbAware {
         String result = "...";
         if (node.getPsi() instanceof UdlDefinition) {
             UdlDefinition definition = (UdlDefinition) node.getPsi();
-            if (definition.getCallbackOrInterfaceOrMixin() != null) {
-                if (definition.getCallbackOrInterfaceOrMixin().getInterfaceOrMixin() != null) {
-                    result = "interface ...";
-                }
-            } else if (definition.getNamespace() != null) {
-                result = "namespace ...";
-            } else if (definition.getPartial() != null) {
-                result = "partial ...";
-            } else if (definition.getDictionary() != null) {
-                String name = definition.getDictionary().getName();
-                if (name != null) {
-                    result = "dictionary " + name + " { ... }";
-                }
-            } else if (definition.getEnum() != null) {
-                result = "enum ...";
-            } else if (definition.getTypedef() != null) {
-                result = "typedef ...";
-            } else if (definition.getIncludesStatement() != null) {
-                result = "... includes ...";
-            }
+            result = UdlUtil.getDefinitionTypeText(definition) + " " + definition.getName() + " { ... }";
         }
         return result;
     }

@@ -6,8 +6,7 @@ import com.intellij.lang.findUsages.FindUsagesProvider;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiNamedElement;
 import com.intellij.psi.tree.TokenSet;
-import dev.lonami.uniffidl.psi.UdlDictionary;
-import dev.lonami.uniffidl.psi.UdlTokenSets;
+import dev.lonami.uniffidl.psi.*;
 import org.jetbrains.annotations.Nls;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
@@ -34,16 +33,20 @@ public class UdlFindUsagesProvider implements FindUsagesProvider {
 
     @Override
     public @Nls @NotNull String getType(@NotNull PsiElement element) {
-        if (element instanceof UdlDictionary) {
+        if (element instanceof UdlTypedef) {
+            return "typedef";
+        } else if (element instanceof UdlDictionary) {
             return "dictionary";
+        } else if (element instanceof UdlEnum) {
+            return "enum";
         }
         return "";
     }
 
     @Override
     public @Nls @NotNull String getDescriptiveName(@NotNull PsiElement element) {
-        if (element instanceof UdlDictionary) {
-            String name = ((UdlDictionary) element).getName();
+        if (element instanceof UdlDefinition) {
+            String name = ((UdlDefinition) element).getName();
             return name != null ? name : "";
         }
         return "";
@@ -51,7 +54,7 @@ public class UdlFindUsagesProvider implements FindUsagesProvider {
 
     @Override
     public @Nls @NotNull String getNodeText(@NotNull PsiElement element, boolean useFullName) {
-        if (element instanceof UdlDictionary) {
+        if (element instanceof UdlDefinition) {
             String text = element.getText();
             return text != null ? text : "";
         }

@@ -6,8 +6,7 @@ import com.intellij.ide.structureView.StructureViewTreeElement;
 import com.intellij.ide.util.treeView.smartTree.Sorter;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.psi.PsiFile;
-import dev.lonami.uniffidl.psi.UdlDictionary;
-import dev.lonami.uniffidl.psi.UdlIdentifiers;
+import dev.lonami.uniffidl.psi.UdlDefinition;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
@@ -29,13 +28,13 @@ public class UdlStructureViewModel extends StructureViewModelBase implements Str
 
     @Override
     public boolean isAlwaysLeaf(StructureViewTreeElement element) {
-        return element.getValue() instanceof UdlDictionary;
+        return element.getValue() instanceof UdlDefinition;
     }
 
     @Override
     protected Class<?> @NotNull [] getSuitableClasses() {
         return new Class[]{
-                UdlDictionary.class
+                UdlDefinition.class
         };
     }
 }

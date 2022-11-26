@@ -36,7 +36,7 @@ public class UdlAnnotator implements Annotator {
         if (identifier != null) {
             String type = identifier.getText();
             if (!type.equals("void")) {
-                if (UdlUtil.findDictionaries(element.getProject(), type).isEmpty()) {
+                if (UdlUtil.findTypeDefinitions(element.getProject(), type).isEmpty()) {
                     holder.newAnnotation(HighlightSeverity.ERROR, "Cannot resolve symbol: '" + type + "'")
                             .range(identifier.getTextRange())
                             .highlightType(ProblemHighlightType.LIKE_UNKNOWN_SYMBOL)
