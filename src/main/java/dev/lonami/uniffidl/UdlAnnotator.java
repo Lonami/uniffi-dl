@@ -26,7 +26,7 @@ public class UdlAnnotator implements Annotator {
                     .range(element.getTextRange())
                     .textAttributes(DefaultLanguageHighlighterColors.METADATA)
                     .highlightType(ProblemHighlightType.LIKE_UNKNOWN_SYMBOL)
-                    .withFix(new UdlCreateDictionaryQuickFix("lol"))
+                    .withFix(new UdlCreateDictionaryQuickFix(element.getText()))
                     .create();
         }
     }
