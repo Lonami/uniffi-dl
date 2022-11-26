@@ -2,6 +2,7 @@ package dev.lonami.uniffidl;
 
 import com.google.common.collect.Lists;
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiComment;
 import com.intellij.psi.PsiElement;
@@ -14,7 +15,6 @@ import dev.lonami.uniffidl.psi.UdlDefinition;
 import dev.lonami.uniffidl.psi.UdlDictionary;
 import dev.lonami.uniffidl.psi.UdlFile;
 import org.jetbrains.annotations.NotNull;
-import org.jsoup.helper.StringUtil;
 
 import java.util.ArrayList;
 import java.util.Collection;
