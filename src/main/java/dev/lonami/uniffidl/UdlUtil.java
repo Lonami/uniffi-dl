@@ -4,15 +4,11 @@ import com.google.common.collect.Lists;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.openapi.vfs.VirtualFile;
-import com.intellij.psi.PsiComment;
-import com.intellij.psi.PsiElement;
-import com.intellij.psi.PsiManager;
-import com.intellij.psi.PsiWhiteSpace;
+import com.intellij.psi.*;
 import com.intellij.psi.search.FileTypeIndex;
 import com.intellij.psi.search.GlobalSearchScope;
 import com.intellij.psi.util.PsiTreeUtil;
-import dev.lonami.uniffidl.psi.UdlDefinition;
-import dev.lonami.uniffidl.psi.UdlFile;
+import dev.lonami.uniffidl.psi.*;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -75,6 +71,27 @@ public class UdlUtil {
                     }
                 }
             }
+        }
+
+        return result;
+    }
+
+    public static List<NavigatablePsiElement> findDefinitionChildren(UdlDefinition definition) {
+        List<NavigatablePsiElement> result = new ArrayList<>();
+
+        Collection<UdlDictionaryMember> members = PsiTreeUtil.findChildrenOfType(definition, UdlDictionaryMember.class);
+        for (UdlDictionaryMember member : members) {
+            result.add((NavigatablePsiElement) member);
+        }
+
+        Collection<UdlRegularOperation> operations = PsiTreeUtil.findChildrenOfType(definition, UdlRegularOperation.class);
+        for (UdlRegularOperation operation : operations) {
+            result.add((NavigatablePsiElement) operation);
+        }
+
+        Collection<UdlConstructor> constructors = PsiTreeUtil.findChildrenOfType(definition, UdlConstructor.class);
+        for (UdlConstructor constructor : constructors) {
+            result.add((NavigatablePsiElement) constructor);
         }
 
         return result;

@@ -13,5 +13,8 @@ public class UdlIcons {
     public static final Icon NAMESPACE = AllIcons.Nodes.Artifact;
     public static final Icon PARTIAL = AllIcons.Nodes.AbstractClass;
     public static final Icon INTERFACE = AllIcons.Nodes.Interface;
-    public static final Icon CALLBACK = AllIcons.Nodes.MethodReference;
+    public static final Icon CALLBACK = AllIcons.Nodes.Lambda;
+    public static final Icon CONSTRUCTOR = AllIcons.Nodes.ClassInitializer;
+    public static final Icon METHOD = AllIcons.Nodes.Method;
+    public static final Icon PROPERTY = AllIcons.Nodes.Property;
 }

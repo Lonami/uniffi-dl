@@ -278,7 +278,11 @@ Operation ::=
     | SpecialOperation
 
 RegularOperation ::=
-    Type OperationRest
+    Type OperationRest {
+        mixin="dev.lonami.uniffidl.psi.impl.UdlNamedElementImpl"
+        implements="dev.lonami.uniffidl.psi.UdlNamedElement"
+        methods=[getNameIdentifier getName setName getPresentation]
+    }
 
 SpecialOperation ::=
     Special RegularOperation
@@ -322,7 +326,9 @@ Ellipsis ::=
     (OP_ELLIPSIS)?
 
 Constructor ::=
-    KW_CONSTRUCTOR OP_OPEN_PAREN ArgumentList OP_CLOSE_PAREN OP_SEMICOLON
+    KW_CONSTRUCTOR OP_OPEN_PAREN ArgumentList OP_CLOSE_PAREN OP_SEMICOLON  {
+        methods=[getPresentation]
+    }
 
 Stringifier ::=
     KW_STRINGIFIER StringifierRest
@@ -380,7 +386,11 @@ DictionaryMembers ::=
     (DictionaryMember DictionaryMembers)?
 
 DictionaryMember ::=
-    ExtendedAttributeList DictionaryMemberRest
+    ExtendedAttributeList DictionaryMemberRest {
+       mixin="dev.lonami.uniffidl.psi.impl.UdlNamedElementImpl"
+       implements="dev.lonami.uniffidl.psi.UdlNamedElement"
+       methods=[getNameIdentifier getName setName getPresentation]
+   }
 
 DictionaryMemberRest ::=
     KW_REQUIRED TypeWithExtendedAttributes identifier OP_SEMICOLON

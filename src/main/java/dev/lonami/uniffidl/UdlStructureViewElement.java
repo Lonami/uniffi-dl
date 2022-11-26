@@ -62,6 +62,13 @@ public class UdlStructureViewElement implements StructureViewTreeElement, Sortab
                 treeElements.add(new UdlStructureViewElement((UdlDefinitionImpl) definition));
             }
             return treeElements.toArray(new TreeElement[0]);
+        } else if (myElement instanceof UdlDefinition) {
+            List<NavigatablePsiElement> children = UdlUtil.findDefinitionChildren((UdlDefinition) myElement);
+            List<TreeElement> treeElements = new ArrayList<>(children.size());
+            for (NavigatablePsiElement child : children) {
+                treeElements.add(new UdlStructureViewElement(child));
+            }
+            return treeElements.toArray(new TreeElement[0]);
         }
         return EMPTY_ARRAY;
     }
