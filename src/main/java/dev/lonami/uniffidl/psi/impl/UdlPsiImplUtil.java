@@ -50,15 +50,24 @@ public class UdlPsiImplUtil {
 
             @Override
             public @Nullable Icon getIcon(boolean unused) {
-                if (element.getTypedef() != null) {
-                    return UdlIcons.TYPE_DEF;
+                if (element.getCallbackOrInterfaceOrMixin() != null) {
+                    if (element.getCallbackOrInterfaceOrMixin().getInterfaceOrMixin() != null) {
+                        return UdlIcons.INTERFACE;
+                    } else {
+                        return UdlIcons.CALLBACK;
+                    }
+                } else if (element.getNamespace() != null) {
+                    return UdlIcons.NAMESPACE;
+                } else if (element.getPartial() != null) {
+                    return UdlIcons.PARTIAL;
                 } else if (element.getDictionary() != null) {
                     return UdlIcons.DICTIONARY;
                 } else if (element.getEnum() != null) {
                     return UdlIcons.ENUM;
-                } else {
-                    return null;
+                } else if (element.getTypedef() != null) {
+                    return UdlIcons.TYPE_DEF;
                 }
+                return null;
             }
         };
     }

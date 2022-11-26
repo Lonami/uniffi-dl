@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class UdlUtil {
     private static boolean isTypeDefinition(UdlDefinition definition) {
@@ -37,39 +38,30 @@ public class UdlUtil {
      * @return matching definitions
      */
     public static List<UdlDefinition> findTypeDefinitions(Project project, String key) {
-        List<UdlDefinition> result = new ArrayList<>();
-
-        Collection<VirtualFile> virtualFiles = FileTypeIndex.getFiles(UdlFileType.INSTANCE, GlobalSearchScope.allScope(project));
-        for (VirtualFile virtualFile : virtualFiles) {
-            UdlFile udlFile = (UdlFile) PsiManager.getInstance(project).findFile(virtualFile);
-            if (udlFile != null) {
-                UdlDefinition[] definitions = PsiTreeUtil.getChildrenOfType(udlFile, UdlDefinition.class);
-                if (definitions != null) {
-                    for (UdlDefinition definition : definitions) {
-                        if (isTypeDefinition(definition) && key.equals(definition.getName())) {
-                            result.add(definition);
-                        }
-                    }
-                }
-            }
-        }
-
-        return result;
+        return findDefinitions(project, definition -> isTypeDefinition(definition) && key.equals(definition.getName()));
     }
 
     public static List<UdlDefinition> findTypeDefinitions(Project project) {
+        return findDefinitions(project, UdlUtil::isTypeDefinition);
+    }
+
+    public static List<UdlDefinition> findDefinitions(UdlFile udlFile) {
+        return findDefinitions(udlFile, null, null);
+    }
+
+    private static List<UdlDefinition> findDefinitions(Project project, Predicate<UdlDefinition> filter) {
         List<UdlDefinition> result = new ArrayList<>();
 
         Collection<VirtualFile> virtualFiles = FileTypeIndex.getFiles(UdlFileType.INSTANCE, GlobalSearchScope.allScope(project));
         for (VirtualFile virtualFile : virtualFiles) {
             UdlFile udlFile = (UdlFile) PsiManager.getInstance(project).findFile(virtualFile);
-            result = findTypeDefinitions(udlFile, result);
+            result = findDefinitions(udlFile, result, filter);
         }
 
         return result;
     }
 
-    public static List<UdlDefinition> findTypeDefinitions(UdlFile udlFile, List<UdlDefinition> result) {
+    private static List<UdlDefinition> findDefinitions(UdlFile udlFile, List<UdlDefinition> result, Predicate<UdlDefinition> filter) {
         if (result == null) {
             result = new ArrayList<>();
         }
@@ -78,12 +70,13 @@ public class UdlUtil {
             UdlDefinition[] definitions = PsiTreeUtil.getChildrenOfType(udlFile, UdlDefinition.class);
             if (definitions != null) {
                 for (UdlDefinition definition : definitions) {
-                    if (isTypeDefinition(definition)) {
+                    if (filter == null || filter.test(definition)) {
                         result.add(definition);
                     }
                 }
             }
         }
+
         return result;
     }
 

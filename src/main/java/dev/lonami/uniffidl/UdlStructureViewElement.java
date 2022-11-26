@@ -56,7 +56,7 @@ public class UdlStructureViewElement implements StructureViewTreeElement, Sortab
     @Override
     public TreeElement @NotNull [] getChildren() {
         if (myElement instanceof UdlFile) {
-            List<UdlDefinition> definitions = UdlUtil.findTypeDefinitions((UdlFile) myElement, null);
+            List<UdlDefinition> definitions = UdlUtil.findDefinitions((UdlFile) myElement);
             List<TreeElement> treeElements = new ArrayList<>(definitions.size());
             for (UdlDefinition definition : definitions) {
                 treeElements.add(new UdlStructureViewElement((UdlDefinitionImpl) definition));

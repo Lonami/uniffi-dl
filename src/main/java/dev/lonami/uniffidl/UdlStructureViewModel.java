@@ -7,6 +7,7 @@ import com.intellij.ide.util.treeView.smartTree.Sorter;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.psi.PsiFile;
 import dev.lonami.uniffidl.psi.UdlDefinition;
+import dev.lonami.uniffidl.psi.UdlInterfaceMember;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
@@ -28,7 +29,7 @@ public class UdlStructureViewModel extends StructureViewModelBase implements Str
 
     @Override
     public boolean isAlwaysLeaf(StructureViewTreeElement element) {
-        return element.getValue() instanceof UdlDefinition;
+        return element.getValue() instanceof UdlInterfaceMember;
     }
 
     @Override
