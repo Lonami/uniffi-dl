@@ -267,7 +267,7 @@ OptionalReadOnly ::=
 
 DefaultValue ::=
     ConstValue
-    | KW_STRING
+    | string
     | OP_OPEN_BRACKET OP_CLOSE_BRACKET
     | OP_OPEN_BRACE OP_CLOSE_BRACE
     | KW_NULL
@@ -406,13 +406,13 @@ Enum ::=
     KW_ENUM identifier OP_OPEN_BRACE EnumValueList OP_CLOSE_BRACE OP_SEMICOLON
 
 EnumValueList ::=
-    KW_STRING EnumValueListComma
+    string EnumValueListComma
 
 EnumValueListComma ::=
     (OP_SEPARATOR EnumValueListString)?
 
 EnumValueListString ::=
-    (KW_STRING EnumValueListComma)?
+    (string EnumValueListComma)?
 
 CallbackRest ::=
     identifier OP_EQUALS Type OP_OPEN_PAREN ArgumentList OP_CLOSE_PAREN OP_SEMICOLON
