@@ -122,7 +122,7 @@ Nearly every file, class or interface uses `Udl` as the prefix.
 * Line markers to help highlight the type of definitions via gutter icons and provide additional features
   such as quick navigation is currently not implemented, but a [custom Line Marker Provider][line-marker]
   could also be defined.
-* Code completion is provided by `UdlCompletionContributor`.
+* Code completion is provided by `UdlCompletionContributor`. Brace matching is provided by `UdlBraceMatcher`.
 * The commenter is defined by `UdlCommenter`, which simply defines the comment markers used by the language.
 * Reference resolution is provided by `UdlReferenceContributor`, which returns instances of `UdlReference` in order
   to perform the actual resolution. [Support for in-place refactoring could be defined][inplace-refactor] but is not

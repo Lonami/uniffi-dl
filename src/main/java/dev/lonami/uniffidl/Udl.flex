@@ -39,9 +39,9 @@ ALT=[^\t\n\r 0-9A-Za-z]
   "..."               { return UdlTypes.OP_ELLIPSIS; }
   ":"                 { return UdlTypes.OP_COLON; }
   ";"                 { return UdlTypes.OP_SEMICOLON; }
-  "<"                 { return UdlTypes.OP_LESSTHAN; }
+  "<"                 { return UdlTypes.OP_OPEN_ANGLE_BRACKET; }
   "="                 { return UdlTypes.OP_EQUALS; }
-  ">"                 { return UdlTypes.OP_GREATERTHAN; }
+  ">"                 { return UdlTypes.OP_CLOSE_ANGLE_BRACKET; }
   "?"                 { return UdlTypes.OP_NULLABLE; }
   "Infinity"          { return UdlTypes.KW_POSINF; }
   "NaN"               { return UdlTypes.KW_NAN; }

@@ -83,5 +83,9 @@
         <lang.documentationProvider
                 language="Uniffi-DL"
                 implementationClass="dev.lonami.uniffidl.UdlDocumentationProvider"/>
+
+        <lang.braceMatcher
+                language="Uniffi-DL"
+                implementationClass="dev.lonami.uniffidl.UdlBraceMatcher"/>
     </extensions>
 </idea-plugin>

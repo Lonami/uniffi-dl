@@ -24,9 +24,9 @@
       OP_ELLIPSIS="..."
       OP_COLON=":"
       OP_SEMICOLON=";"
-      OP_LESSTHAN="<"
+      OP_OPEN_ANGLE_BRACKET="<"
       OP_EQUALS="="
-      OP_GREATERTHAN=">"
+      OP_CLOSE_ANGLE_BRACKET=">"
       OP_NULLABLE="?"
       KW_POSINF="Infinity"
       KW_NAN="NaN"
@@ -350,13 +350,13 @@ StaticMemberRest ::=
     | RegularOperation
 
 Iterable ::=
-    KW_ITERABLE OP_LESSTHAN TypeWithExtendedAttributes OptionalType OP_GREATERTHAN OP_SEMICOLON
+    KW_ITERABLE OP_OPEN_ANGLE_BRACKET TypeWithExtendedAttributes OptionalType OP_CLOSE_ANGLE_BRACKET OP_SEMICOLON
 
 OptionalType ::=
     (OP_SEPARATOR TypeWithExtendedAttributes)?
 
 AsyncIterable ::=
-    KW_ASYNC KW_ITERABLE OP_LESSTHAN TypeWithExtendedAttributes OptionalType OP_GREATERTHAN OptionalArgumentList OP_SEMICOLON
+    KW_ASYNC KW_ITERABLE OP_OPEN_ANGLE_BRACKET TypeWithExtendedAttributes OptionalType OP_CLOSE_ANGLE_BRACKET OptionalArgumentList OP_SEMICOLON
 
 OptionalArgumentList ::=
     (OP_OPEN_PAREN ArgumentList OP_CLOSE_PAREN)?
@@ -365,13 +365,13 @@ ReadWriteMaplike ::=
     MaplikeRest
 
 MaplikeRest ::=
-    KW_MAPLIKE OP_LESSTHAN TypeWithExtendedAttributes OP_SEPARATOR TypeWithExtendedAttributes OP_GREATERTHAN OP_SEMICOLON
+    KW_MAPLIKE OP_OPEN_ANGLE_BRACKET TypeWithExtendedAttributes OP_SEPARATOR TypeWithExtendedAttributes OP_CLOSE_ANGLE_BRACKET OP_SEMICOLON
 
 ReadWriteSetlike ::=
     SetlikeRest
 
 SetlikeRest ::=
-    KW_SETLIKE OP_LESSTHAN TypeWithExtendedAttributes OP_GREATERTHAN OP_SEMICOLON
+    KW_SETLIKE OP_OPEN_ANGLE_BRACKET TypeWithExtendedAttributes OP_CLOSE_ANGLE_BRACKET OP_SEMICOLON
 
 Namespace ::=
     KW_NAMESPACE identifier OP_OPEN_BRACE NamespaceMembers OP_CLOSE_BRACE OP_SEMICOLON
@@ -455,12 +455,12 @@ DistinguishableType ::=
     PrimitiveType Null
     | StringType Null
     | identifier Null
-    | KW_SEQUENCE OP_LESSTHAN TypeWithExtendedAttributes OP_GREATERTHAN Null
+    | KW_SEQUENCE OP_OPEN_ANGLE_BRACKET TypeWithExtendedAttributes OP_CLOSE_ANGLE_BRACKET Null
     | KW_OBJECT Null
     | KW_SYMBOL Null
     | BufferRelatedType Null
-    | "FrozenArray" OP_LESSTHAN TypeWithExtendedAttributes OP_GREATERTHAN Null
-    | "ObservableArray" OP_LESSTHAN TypeWithExtendedAttributes OP_GREATERTHAN Null
+    | "FrozenArray" OP_OPEN_ANGLE_BRACKET TypeWithExtendedAttributes OP_CLOSE_ANGLE_BRACKET Null
+    | "ObservableArray" OP_OPEN_ANGLE_BRACKET TypeWithExtendedAttributes OP_CLOSE_ANGLE_BRACKET Null
     | RecordType Null
     | KW_UNDEFINED Null
 
@@ -497,10 +497,10 @@ StringType ::=
     | "USVString"
 
 PromiseType ::=
-    "Promise" OP_LESSTHAN Type OP_GREATERTHAN
+    "Promise" OP_OPEN_ANGLE_BRACKET Type OP_CLOSE_ANGLE_BRACKET
 
 RecordType ::=
-    KW_RECORD OP_LESSTHAN StringType OP_SEPARATOR TypeWithExtendedAttributes OP_GREATERTHAN
+    KW_RECORD OP_OPEN_ANGLE_BRACKET StringType OP_SEPARATOR TypeWithExtendedAttributes OP_CLOSE_ANGLE_BRACKET
 
 Null ::=
     (OP_NULLABLE)?
@@ -553,9 +553,9 @@ Other ::=
     | OP_ELLIPSIS
     | OP_COLON
     | OP_SEMICOLON
-    | OP_LESSTHAN
+    | OP_OPEN_ANGLE_BRACKET
     | OP_EQUALS
-    | OP_GREATERTHAN
+    | OP_CLOSE_ANGLE_BRACKET
     | OP_NULLABLE
     | OP_WILDCARD
     | "ByteString"
