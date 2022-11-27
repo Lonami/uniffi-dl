@@ -1,8 +1,54 @@
 # uniffi-dl
 
-*uniffi-dl* is a plugin designed for the IntelliJ IDE (and its different flavours, such as Android Studio)
-with the goal to provide syntax highlighting, code folding, code completion, reference resolution and navigation,
-among other features such as offering view of the code structure or handy quick fixes.
+*uniffi-dl* is a plugin designed for the [IntelliJ IDE][idea] (and more precisely one of its other flavours,
+namely [Android Studio][android-studio]) with the goal to provide syntax highlighting, code folding, code
+completion, reference resolution and navigation, among other features such as offering view of the code
+structure or handy quick fixes, for the [UniFFI Definition Language (UDL)][udl], a variant of [WebIDL][web-idl]
+specifically tailored for the [UniFFI tool][uniffi] to "generate foreign-language bindings targeting Rust libraries".
+
+[idea]: https://www.jetbrains.com/idea/
+
+[android-studio]: https://developer.android.com/studio/
+
+[udl]: https://mozilla.github.io/uniffi-rs/
+
+[web-idl]: https://webidl.spec.whatwg.org/
+
+[uniffi]: https://github.com/mozilla/uniffi-rs/
+
+# FAQ
+
+## Is this plugin the official plugin for UniFFI?
+
+This is *not* the official plugin for the UniFFI tool (which doesn't exist as of 2022-11-27), but as far as I'm aware,
+it's the first and only plugin to exist providing language support for `.udl` files.
+
+If you're one of UniFFI's developers and would like to lift this plugin's status to be recognized as the official one,
+please contact me.
+
+## Why not a plugin for other code editors?
+
+Chances are you'll be using UniFFI to embed Rust code in your Android applications (at least I am), in which case
+you're most likely going to be using Android Studio, as it provides one of the better experiences (if not the best)
+for developing Android applications.
+
+If you port this plugin somewhere else and would like me to mention your plugin here, please contact me.
+
+## This code is a mess! Why isn't it written in Kotlin?
+
+Well, I tried, but I'm not all that good at porting Java concepts to Kotlin concepts, and the [Custom Language Support
+Tutorial][cls-tutorial] is written in Java, so it was much less painful to follow along with Java. At the time of
+writing, the tutorial also doesn't do that good of a job at *explaining* the way certain things work, but rather just
+puts an order to when you're expected to implement certain features for the plugin, so for the most part, this plugin
+is a snippet-by-snippet port from the Simple Language to UDL.
+
+My goal with this was just to provide syntax highlighting for UDL and maybe even code completion, but I ended up
+completing the entire tutorial to write a plugin, so it turned out to have more features than I was hoping for.
+
+Please feel welcome to implement code improvements (such as de-duplication) and send a pull request, or perhaps even
+a rewrite to Kotlin now that the core functionality works!
+
+[cls-tutorial]: https://plugins.jetbrains.com/docs/intellij/custom-language-support-tutorial.html
 
 # Contributing
 
@@ -27,6 +73,9 @@ Right-click `src/main/kotlin/dev/lonami/uniffidl/Udl.bnf` and select "Generate P
 Right-click `src/main/kotlin/dev/lonami/uniffidl/Udl.flex` and select "Run JFlex Generator".
 During the first run you will have to select the root of the project itself to download
 both `idea-flex.skeleton` and `jflex*.jar`.
+
+(If you remove rules from the grammar you may need to delete the generated folder `gen`
+before generating the code, otherwise, older, non-working rules may fail to compile.)
 
 Then it should be possible to run `gradlew buildPlugin` or `gradlew runIde`, or by clicking on the "Play"
 button of the IDE to run the selected Gradle configuration.
