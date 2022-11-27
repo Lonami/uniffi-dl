@@ -34,6 +34,15 @@ for developing Android applications.
 
 If you port this plugin somewhere else and would like me to mention your plugin here, please contact me.
 
+## My code styles settings are not being respected!
+
+I personally have strong opinions in regard to the formatting rules, so I haven't really tried to make it
+customizable. However, you're welcome to send a pull request which makes the formatting code obey the settings
+(as long as there's a way for me to keep my old formatting style).
+
+Not all formatting rules are currently implemented either, only some of the basic ones, so you're also welcome
+implement these and send a pull request.
+
 ## This code is a mess! Why isn't it written in Kotlin?
 
 Well, I tried, but I'm not all that good at porting Java concepts to Kotlin concepts, and the [Custom Language Support

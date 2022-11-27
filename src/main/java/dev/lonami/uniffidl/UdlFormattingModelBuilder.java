@@ -8,8 +8,10 @@ import org.jetbrains.annotations.NotNull;
 public class UdlFormattingModelBuilder implements FormattingModelBuilder {
     private static SpacingBuilder createSpaceBuilder(CodeStyleSettings settings) {
         return new SpacingBuilder(settings, UdlLanguage.INSTANCE)
-                .before(UdlTypes.OP_OPEN_BRACE)
+                .between(UdlTypes.IDENTIFIER, UdlTypes.OP_OPEN_BRACE)
                 .spaceIf(settings.getCommonSettings(UdlLanguage.INSTANCE.getID()).SPACE_BEFORE_CLASS_LBRACE)
+                .between(UdlTypes.IDENTIFIER, UdlTypes.OP_OPEN_PAREN)
+                .spaceIf(settings.getCommonSettings(UdlLanguage.INSTANCE.getID()).SPACE_BEFORE_METHOD_PARENTHESES)
                 .before(UdlTypes.DEFINITION)
                 .none();
     }
