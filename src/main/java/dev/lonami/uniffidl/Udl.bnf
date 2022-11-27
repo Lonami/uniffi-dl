@@ -100,7 +100,7 @@
 // Most of UDL comes from WebIDL's grammar at https://webidl.spec.whatwg.org/#idl-grammar
 
 Definitions ::=
-    (ExtendedAttributeList Definition Definitions)?
+    (ExtendedAttributeList Definition)*
 
 Definition ::=
     CallbackOrInterfaceOrMixin
@@ -169,14 +169,14 @@ PartialInterfaceRest ::=
     identifier OP_OPEN_BRACE PartialInterfaceMembers OP_CLOSE_BRACE OP_SEMICOLON
 
 InterfaceMembers ::=
-    (ExtendedAttributeList InterfaceMember InterfaceMembers)?
+    (ExtendedAttributeList InterfaceMember)*
 
 InterfaceMember ::=
     PartialInterfaceMember
     | Constructor
 
 PartialInterfaceMembers ::=
-    (ExtendedAttributeList PartialInterfaceMember PartialInterfaceMembers)?
+    (ExtendedAttributeList PartialInterfaceMember)*
 
 PartialInterfaceMember ::=
     Const
@@ -198,7 +198,7 @@ MixinRest ::=
     KW_MIXIN identifier OP_OPEN_BRACE MixinMembers OP_CLOSE_BRACE OP_SEMICOLON
 
 MixinMembers ::=
-    (ExtendedAttributeList MixinMember MixinMembers)?
+    (ExtendedAttributeList MixinMember)*
 
 MixinMember ::=
     Const
@@ -214,7 +214,7 @@ CallbackRestOrInterface ::=
     | KW_INTERFACE identifier OP_OPEN_BRACE CallbackInterfaceMembers OP_CLOSE_BRACE OP_SEMICOLON
 
 CallbackInterfaceMembers ::=
-    (ExtendedAttributeList CallbackInterfaceMember CallbackInterfaceMembers)?
+    (ExtendedAttributeList CallbackInterfaceMember)*
 
 CallbackInterfaceMember ::=
     Const
@@ -314,7 +314,7 @@ ArgumentList ::=
     (Argument Arguments)?
 
 Arguments ::=
-    (OP_SEPARATOR Argument Arguments)?
+    (OP_SEPARATOR Argument)*
 
 Argument ::=
     ExtendedAttributeList ArgumentRest
@@ -377,7 +377,7 @@ Namespace ::=
     KW_NAMESPACE identifier OP_OPEN_BRACE NamespaceMembers OP_CLOSE_BRACE OP_SEMICOLON
 
 NamespaceMembers ::=
-    (ExtendedAttributeList NamespaceMember NamespaceMembers)?
+    (ExtendedAttributeList NamespaceMember)*
 
 NamespaceMember ::=
     RegularOperation
@@ -388,7 +388,7 @@ Dictionary ::=
     KW_DICTIONARY identifier Inheritance OP_OPEN_BRACE DictionaryMembers OP_CLOSE_BRACE OP_SEMICOLON
 
 DictionaryMembers ::=
-    (DictionaryMember DictionaryMembers)?
+    (DictionaryMember)*
 
 DictionaryMember ::=
     ExtendedAttributeList DictionaryMemberRest {
@@ -410,6 +410,7 @@ Default ::=
 Enum ::=
     KW_ENUM identifier OP_OPEN_BRACE EnumValueList OP_CLOSE_BRACE OP_SEMICOLON
 
+// TODO it would be great to flatten this while still allowing for a trailing comma
 EnumValueList ::=
     string EnumValueListComma
 
@@ -449,7 +450,7 @@ UnionMemberType ::=
     | UnionType Null
 
 UnionMemberTypes ::=
-    (KW_OR UnionMemberType UnionMemberTypes)?
+    (KW_OR UnionMemberType)*
 
 DistinguishableType ::=
     PrimitiveType Null
@@ -524,7 +525,7 @@ ExtendedAttributeList ::=
     (OP_OPEN_BRACKET ExtendedAttribute ExtendedAttributes OP_CLOSE_BRACKET)?
 
 ExtendedAttributes ::=
-    (OP_SEPARATOR ExtendedAttribute ExtendedAttributes)?
+    (OP_SEPARATOR ExtendedAttribute)*
 
 ExtendedAttribute ::=
     OP_OPEN_PAREN ExtendedAttributeInner OP_CLOSE_PAREN ExtendedAttributeRest
