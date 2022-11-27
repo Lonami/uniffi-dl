@@ -15,7 +15,13 @@ public class UdlPsiImplUtil {
     // Definition
 
     public static PsiElement getNameIdentifier(UdlDefinition element) {
-        ASTNode node = element.getFirstChild().getNode().findChildByType(UdlTypes.IDENTIFIER);
+        PsiElement identifierParent;
+        if (element.getCallbackOrInterfaceOrMixin() != null) {
+            identifierParent = element.getFirstChild().getLastChild().getFirstChild();
+        } else {
+            identifierParent = element.getFirstChild();
+        }
+        ASTNode node = identifierParent.getNode().findChildByType(UdlTypes.IDENTIFIER);
         return node != null ? node.getPsi() : null;
     }
 
