@@ -50,30 +50,31 @@ ALT=[^\t\n\r 0-9A-Za-z]
   "any"               { return UdlTypes.KW_ANY; }
   "async"             { return UdlTypes.KW_ASYNC; }
   "attribute"         { return UdlTypes.KW_ATTRIBUTE; }
-  "bigint"            { return UdlTypes.KW_BIGINT; }
   "boolean"           { return UdlTypes.KW_BOOLEAN; }
-  "byte"              { return UdlTypes.KW_BYTE; }
   "callback"          { return UdlTypes.KW_CALLBACK; }
   "const"             { return UdlTypes.KW_CONST; }
   "constructor"       { return UdlTypes.KW_CONSTRUCTOR; }
   "deleter"           { return UdlTypes.KW_DELETER; }
   "dictionary"        { return UdlTypes.KW_DICTIONARY; }
   "double"            { return UdlTypes.KW_DOUBLE; }
+  "duration"          { return UdlTypes.KW_DURATION; }
   "enum"              { return UdlTypes.KW_ENUM; }
   "false"             { return UdlTypes.KW_FALSE; }
   "float"             { return UdlTypes.KW_FLOAT; }
   "getter"            { return UdlTypes.KW_GETTER; }
+  "i8"                { return UdlTypes.KW_I8; }
+  "i16"               { return UdlTypes.KW_I16; }
+  "i32"               { return UdlTypes.KW_I32; }
+  "i64"               { return UdlTypes.KW_I64; }
   "includes"          { return UdlTypes.KW_INCLUDES; }
   "inherit"           { return UdlTypes.KW_INHERIT; }
   "interface"         { return UdlTypes.KW_INTERFACE; }
   "iterable"          { return UdlTypes.KW_ITERABLE; }
-  "long"              { return UdlTypes.KW_LONG; }
   "maplike"           { return UdlTypes.KW_MAPLIKE; }
   "mixin"             { return UdlTypes.KW_MIXIN; }
   "namespace"         { return UdlTypes.KW_NAMESPACE; }
   "null"              { return UdlTypes.KW_NULL; }
   "object"            { return UdlTypes.KW_OBJECT; }
-  "octet"             { return UdlTypes.KW_OCTET; }
   "optional"          { return UdlTypes.KW_OPTIONAL; }
   "or"                { return UdlTypes.KW_OR; }
   "partial"           { return UdlTypes.KW_PARTIAL; }
@@ -83,24 +84,32 @@ ALT=[^\t\n\r 0-9A-Za-z]
   "sequence"          { return UdlTypes.KW_SEQUENCE; }
   "setlike"           { return UdlTypes.KW_SETLIKE; }
   "setter"            { return UdlTypes.KW_SETTER; }
-  "short"             { return UdlTypes.KW_SHORT; }
   "static"            { return UdlTypes.KW_STATIC; }
   "string"            { return UdlTypes.KW_STRING; }
   "stringifier"       { return UdlTypes.KW_STRINGIFIER; }
   "symbol"            { return UdlTypes.KW_SYMBOL; }
+  "timestamp"         { return UdlTypes.KW_TIMESTAMP; }
   "true"              { return UdlTypes.KW_TRUE; }
   "typedef"           { return UdlTypes.KW_TYPEDEF; }
+  "u8"                { return UdlTypes.KW_U8; }
+  "u16"               { return UdlTypes.KW_U16; }
+  "u32"               { return UdlTypes.KW_U32; }
+  "u64"               { return UdlTypes.KW_U64; }
   "undefined"         { return UdlTypes.KW_UNDEFINED; }
   "unrestricted"      { return UdlTypes.KW_UNRESTRICTED; }
-  "unsigned"          { return UdlTypes.KW_UNSIGNED; }
   "{"                 { return UdlTypes.OP_OPEN_BRACE; }
   "|"                 { return UdlTypes.OP_PIPE; }
   "}"                 { return UdlTypes.OP_CLOSE_BRACE; }
+  "KW_LONG"           { return UdlTypes.KW_LONG; }
+  "KW_SHORT"          { return UdlTypes.KW_SHORT; }
+  "KW_UNSIGNED"       { return UdlTypes.KW_UNSIGNED; }
 
   {INTEGER}           { return UdlTypes.INTEGER; }
   {DECIMAL}           { return UdlTypes.DECIMAL; }
-  {STRING}            { return UdlTypes.STRING; }
-  {ALT}               { return UdlTypes.ALT; }
   {IDENTIFIER}        { return UdlTypes.IDENTIFIER; }
+  {STRING}            { return UdlTypes.STRING; }
+  {WHITESPACE}        { return UdlTypes.WHITESPACE; }
+  {COMMENT}           { return UdlTypes.COMMENT; }
+  {ALT}               { return UdlTypes.ALT; }
 
 }

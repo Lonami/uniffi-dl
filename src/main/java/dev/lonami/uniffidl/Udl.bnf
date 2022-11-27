@@ -35,30 +35,31 @@
       KW_ANY="any"
       KW_ASYNC="async"
       KW_ATTRIBUTE="attribute"
-      KW_BIGINT="bigint"
       KW_BOOLEAN="boolean"
-      KW_BYTE="byte"
       KW_CALLBACK="callback"
       KW_CONST="const"
       KW_CONSTRUCTOR="constructor"
       KW_DELETER="deleter"
       KW_DICTIONARY="dictionary"
       KW_DOUBLE="double"
+      KW_DURATION="duration"
       KW_ENUM="enum"
       KW_FALSE="false"
       KW_FLOAT="float"
       KW_GETTER="getter"
+      KW_I8="i8"
+      KW_I16="i16"
+      KW_I32="i32"
+      KW_I64="i64"
       KW_INCLUDES="includes"
       KW_INHERIT="inherit"
       KW_INTERFACE="interface"
       KW_ITERABLE="iterable"
-      KW_LONG="long"
       KW_MAPLIKE="maplike"
       KW_MIXIN="mixin"
       KW_NAMESPACE="namespace"
       KW_NULL="null"
       KW_OBJECT="object"
-      KW_OCTET="octet"
       KW_OPTIONAL="optional"
       KW_OR="or"
       KW_PARTIAL="partial"
@@ -68,16 +69,19 @@
       KW_SEQUENCE="sequence"
       KW_SETLIKE="setlike"
       KW_SETTER="setter"
-      KW_SHORT="short"
       KW_STATIC="static"
       KW_STRING="string"
       KW_STRINGIFIER="stringifier"
       KW_SYMBOL="symbol"
+      KW_TIMESTAMP="timestamp"
       KW_TRUE="true"
       KW_TYPEDEF="typedef"
+      KW_U8="u8"
+      KW_U16="u16"
+      KW_U32="u32"
+      KW_U64="u64"
       KW_UNDEFINED="undefined"
       KW_UNRESTRICTED="unrestricted"
-      KW_UNSIGNED="unsigned"
       OP_OPEN_BRACE="{"
       OP_PIPE="|"
       OP_CLOSE_BRACE="}"
@@ -456,12 +460,11 @@ DistinguishableType ::=
     | KW_UNDEFINED Null
 
 PrimitiveType ::=
-    UnsignedIntegerType
+    IntegerType
     | UnrestrictedFloatType
     | KW_BOOLEAN
-    | KW_BYTE
-    | KW_OCTET
-    | KW_BIGINT
+    | KW_TIMESTAMP
+    | KW_DURATION
 
 UnrestrictedFloatType ::=
     KW_UNRESTRICTED FloatType
@@ -471,16 +474,16 @@ FloatType ::=
     KW_FLOAT
     | KW_DOUBLE
 
-UnsignedIntegerType ::=
-    KW_UNSIGNED IntegerType
-    | IntegerType
-
 IntegerType ::=
-    KW_SHORT
-    | KW_LONG OptionalLong
-
-OptionalLong ::=
-    (KW_LONG)?
+    KW_U8
+    | KW_I8
+    | KW_U16
+    | KW_I16
+    | KW_U32
+    | KW_I32
+    | KW_U64
+    | KW_I64
+    | KW_LONG
 
 StringType ::=
     KW_STRING
@@ -559,16 +562,13 @@ Other ::=
     | "Promise"
     | "USVString"
     | KW_ANY
-    | KW_BIGINT
     | KW_BOOLEAN
-    | KW_BYTE
     | KW_DOUBLE
     | KW_FALSE
     | KW_FLOAT
     | KW_LONG
     | KW_NULL
     | KW_OBJECT
-    | KW_OCTET
     | KW_OR
     | KW_OPTIONAL
     | KW_RECORD
