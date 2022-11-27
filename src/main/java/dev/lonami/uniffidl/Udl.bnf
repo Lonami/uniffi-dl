@@ -483,7 +483,8 @@ OptionalLong ::=
     (KW_LONG)?
 
 StringType ::=
-    "ByteString"
+    KW_STRING
+    | "ByteString"
     | "DOMString"
     | "USVString"
 
