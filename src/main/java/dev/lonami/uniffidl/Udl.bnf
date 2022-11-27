@@ -82,6 +82,7 @@
       KW_U64="u64"
       KW_UNDEFINED="undefined"
       KW_UNRESTRICTED="unrestricted"
+      KW_VOID="void"
       OP_OPEN_BRACE="{"
       OP_PIPE="|"
       OP_CLOSE_BRACE="}"
@@ -282,7 +283,7 @@ Operation ::=
     | SpecialOperation
 
 RegularOperation ::=
-    Type OperationRest {
+    ReturnType OperationRest {
         mixin="dev.lonami.uniffidl.psi.impl.UdlNamedElementImpl"
         implements="dev.lonami.uniffidl.psi.UdlNamedElement"
         methods=[getNameIdentifier getName setName getPresentation]
@@ -423,6 +424,10 @@ CallbackRest ::=
 
 Typedef ::=
     KW_TYPEDEF TypeWithExtendedAttributes identifier OP_SEMICOLON
+
+ReturnType ::=
+    KW_VOID
+    | Type
 
 Type ::=
     SingleType

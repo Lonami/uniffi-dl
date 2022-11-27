@@ -97,6 +97,7 @@ ALT=[^\t\n\r 0-9A-Za-z]
   "u64"               { return UdlTypes.KW_U64; }
   "undefined"         { return UdlTypes.KW_UNDEFINED; }
   "unrestricted"      { return UdlTypes.KW_UNRESTRICTED; }
+  "void"              { return UdlTypes.KW_VOID; }
   "{"                 { return UdlTypes.OP_OPEN_BRACE; }
   "|"                 { return UdlTypes.OP_PIPE; }
   "}"                 { return UdlTypes.OP_CLOSE_BRACE; }

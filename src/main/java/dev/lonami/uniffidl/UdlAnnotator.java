@@ -35,19 +35,17 @@ public class UdlAnnotator implements Annotator {
         PsiElement identifier = element.getIdentifier();
         if (identifier != null) {
             String type = identifier.getText();
-            if (!type.equals("void")) {
-                if (UdlUtil.findTypeDefinitions(element.getProject(), type).isEmpty()) {
-                    holder.newAnnotation(HighlightSeverity.ERROR, "Cannot resolve symbol: '" + type + "'")
-                            .range(identifier.getTextRange())
-                            .highlightType(ProblemHighlightType.LIKE_UNKNOWN_SYMBOL)
-                            .withFix(new UdlCreateDictionaryQuickFix(type))
-                            .create();
-                } else {
-                    holder.newSilentAnnotation(HighlightSeverity.INFORMATION)
-                            .range(identifier.getTextRange())
-                            .textAttributes(UdlSyntaxHighlighter.IDENTIFIER)
-                            .create();
-                }
+            if (UdlUtil.findTypeDefinitions(element.getProject(), type).isEmpty()) {
+                holder.newAnnotation(HighlightSeverity.ERROR, "Cannot resolve symbol: '" + type + "'")
+                        .range(identifier.getTextRange())
+                        .highlightType(ProblemHighlightType.LIKE_UNKNOWN_SYMBOL)
+                        .withFix(new UdlCreateDictionaryQuickFix(type))
+                        .create();
+            } else {
+                holder.newSilentAnnotation(HighlightSeverity.INFORMATION)
+                        .range(identifier.getTextRange())
+                        .textAttributes(UdlSyntaxHighlighter.IDENTIFIER)
+                        .create();
             }
         }
     }

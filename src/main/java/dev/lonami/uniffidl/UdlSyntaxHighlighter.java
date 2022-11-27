@@ -103,7 +103,8 @@ public class UdlSyntaxHighlighter extends SyntaxHighlighterBase {
                 | tokenType.equals(UdlTypes.KW_U32)
                 | tokenType.equals(UdlTypes.KW_U64)
                 | tokenType.equals(UdlTypes.KW_UNDEFINED)
-                | tokenType.equals(UdlTypes.KW_UNRESTRICTED)) {
+                | tokenType.equals(UdlTypes.KW_UNRESTRICTED)
+                | tokenType.equals(UdlTypes.KW_VOID)) {
             return KEYWORD_KEYS;
         }
         if (tokenType.equals(UdlTypes.STRING)) {
