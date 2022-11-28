@@ -1,26 +1,8 @@
-<svg width="40" height="40" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path fill="#888888" fill-opacity="0.5"
-          d="M 5 0 L 5 1 L 6 1 L 6 0 L 5 0 z M 5 1 L 4 1 L 4 2 L 5 2 L 5 1 z M 4 2 L 3 2 L 3 3 L 4 3 L 4 2 z M 3 3 L 2 3 L 2 4 L 3 4 L 3 3 z "/>
-    <path fill="#888888"
-          d="m 8,0 h 4 V 8 H 2 V 5 h 6 z"/>
-    <path fill="#7700ff"
-          d="M 0 9 L 0 16 L 16 16 L 16 9 L 0 9 z M 1 10 L 2 10 L 2 11 L 3 11 L 3 10 L 4 10 L 5 10 L 5 11 L 6 11 L 7 11 L 7 12 L 8 12 L 8 11 L 9 11 L 10 11 L 10 12 L 10 13 L 10 14 L 9 14 L 8 14 L 8 13 L 7 13 L 7 14 L 6 14 L 5 14 L 5 15 L 4 15 L 3 15 L 3 14 L 2 14 L 2 15 L 1 15 L 1 14 L 1 13 L 1 12 L 1 11 L 1 10 z M 5 14 L 5 13 L 5 12 L 5 11 L 4 11 L 4 12 L 3 12 L 3 13 L 4 13 L 4 14 L 5 14 z M 11 10 L 12 10 L 13 10 L 14 10 L 15 10 L 15 11 L 15 12 L 15 13 L 14 13 L 14 14 L 15 14 L 15 15 L 14 15 L 13 15 L 13 14 L 12 14 L 12 15 L 11 15 L 11 14 L 11 13 L 11 12 L 11 11 L 11 10 z M 14 13 L 14 12 L 14 11 L 13 11 L 12 11 L 12 12 L 13 12 L 13 13 L 14 13 z "/>
-    <path fill="#bb99ff"
-          d="M 2 13 L 2 14 L 3 14 L 3 15 L 4 15 L 5 15 L 5 14 L 4 14 L 4 13 L 3 13 L 2 13 z "/>
-    <path fill="#bb99ff"
-          d="M 3 10 L 3 11 L 2 11 L 2 12 L 3 12 L 4 12 L 4 11 L 5 11 L 5 10 L 4 10 L 3 10 z "/>
-    <path fill="#bb99ff"
-          d="M 13 13 L 13 14 L 13 15 L 14 15 L 15 15 L 15 14 L 14 14 L 14 13 L 13 13 z "/>
-    <path fill="#bb99ff"
-          d="M 5 11 L 5 12 L 6 12 L 7 12 L 7 11 L 6 11 L 5 11 z "/>
-    <path fill="#bb99ff"
-          d="M 5 13 L 5 14 L 6 14 L 7 14 L 7 13 L 6 13 L 5 13 z "/>
-    <path fill="#bb99ff"
-          d="M 8 11 L 8 12 L 9 12 L 10 12 L 10 11 L 9 11 L 8 11 z "/>
-    <path fill="#bb99ff"
-          d="M 8 13 L 8 14 L 9 14 L 10 14 L 10 13 L 9 13 L 8 13 z "/>
-    <path fill="#bb99ff"
-          d="M 14 10 L 14 11 L 15 11 L 15 10 L 14 10 z "/>
-    <path fill="#888888"
-          d="M 5 1 L 5 2 L 4 2 L 4 3 L 3 3 L 3 4 L 4 4 L 5 4 L 6 4 L 6 3 L 6 2 L 6 1 L 5 1 z "/>
+<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path fill="#888888"
+        d="M 20,0 H 32 V 20 H 8 v -8 h 12 z" />
+  <path fill="#7700ff"
+        d="M 0,24 V 40 H 40 V 24 Z m 11,2 h 2 v 9 l 1,1 h 2 l 1,-1 v -9 h 2 v 10 l -2,2 h -4 l -2,-2 z m 10,0 h 2 l 4,1 2,2 v 6 l -2,2 -4,1 h -2 z m 10,0 h 2 v 10 h 5 v 2 h -7 z m -8,2 v 8 h 1 l 2,-1 1,-1 V 30 L 26,29 24,28 Z M 4,34 h 2 l 1,1 v 2 L 6,38 H 4 L 3,37 v -2 z" />
+  <path fill="#888888"
+        d="M 15,0 8,7 v 2 h 9 V 0 Z" />
 </svg>
