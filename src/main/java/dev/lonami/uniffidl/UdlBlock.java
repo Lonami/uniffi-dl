@@ -15,8 +15,8 @@ import java.util.List;
 public class UdlBlock extends AbstractBlock {
     private final SpacingBuilder spacingBuilder;
 
-    protected UdlBlock(@NotNull ASTNode node, @Nullable Wrap wrap, @Nullable Alignment alignment, SpacingBuilder spacingBuilder) {
-        super(node, wrap, alignment);
+    protected UdlBlock(@NotNull ASTNode node, @Nullable Wrap wrap, SpacingBuilder spacingBuilder) {
+        super(node, wrap, null);
         this.spacingBuilder = spacingBuilder;
     }
 
@@ -26,8 +26,7 @@ public class UdlBlock extends AbstractBlock {
         ASTNode child = myNode.getFirstChildNode();
         while (child != null) {
             if (child.getElementType() != TokenType.WHITE_SPACE) {
-                Block block = new UdlBlock(child, Wrap.createWrap(WrapType.NONE, false),
-                        Alignment.createAlignment(), spacingBuilder);
+                Block block = new UdlBlock(child, Wrap.createWrap(WrapType.NONE, false), spacingBuilder);
                 blocks.add(block);
             }
             child = child.getTreeNext();

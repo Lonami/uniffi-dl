@@ -22,7 +22,6 @@ public class UdlFormattingModelBuilder implements FormattingModelBuilder {
         return FormattingModelProvider.createFormattingModelForPsiFile(formattingContext.getContainingFile(),
                 new UdlBlock(formattingContext.getNode(),
                         Wrap.createWrap(WrapType.NONE, false),
-                        Alignment.createAlignment(),
                         createSpaceBuilder(codeStyleSettings)),
                 codeStyleSettings);
     }
