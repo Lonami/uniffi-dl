@@ -4,6 +4,8 @@ import com.intellij.formatting.*;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.TokenType;
 import com.intellij.psi.formatter.common.AbstractBlock;
+import com.intellij.psi.tree.IElementType;
+import dev.lonami.uniffidl.psi.UdlTypes;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -35,7 +37,16 @@ public class UdlBlock extends AbstractBlock {
 
     @Override
     public Indent getIndent() {
-        return Indent.getNoneIndent();
+        IElementType ty = myNode.getElementType();
+        if (ty == UdlTypes.REGULAR_OPERATION
+                || ty == UdlTypes.DICTIONARY_MEMBER
+                || ty == UdlTypes.CONSTRUCTOR
+                || ty == UdlTypes.ENUM_VALUE_LIST
+                || (ty == UdlTypes.EXTENDED_ATTRIBUTE_LIST && myNode.getTextLength() != 0 && myNode.getTreeParent().getTreeParent() != null)) {
+            return Indent.getNormalIndent();
+        } else {
+            return Indent.getNoneIndent();
+        }
     }
 
     @Override
