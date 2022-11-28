@@ -410,15 +410,8 @@ Default ::=
 Enum ::=
     KW_ENUM identifier OP_OPEN_BRACE EnumValueList OP_CLOSE_BRACE OP_SEMICOLON
 
-// TODO it would be great to flatten this while still allowing for a trailing comma
 EnumValueList ::=
-    string EnumValueListComma
-
-EnumValueListComma ::=
-    (OP_SEPARATOR EnumValueListString)?
-
-EnumValueListString ::=
-    (string EnumValueListComma)?
+    string (OP_SEPARATOR string)* OP_SEPARATOR?
 
 CallbackRest ::=
     identifier OP_EQUALS Type OP_OPEN_PAREN ArgumentList OP_CLOSE_PAREN OP_SEMICOLON
