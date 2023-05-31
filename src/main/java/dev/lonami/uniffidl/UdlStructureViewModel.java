@@ -9,8 +9,7 @@ import com.intellij.psi.PsiFile;
 import dev.lonami.uniffidl.psi.UdlDefinition;
 import dev.lonami.uniffidl.psi.UdlInterfaceMember;
 import org.jetbrains.annotations.NotNull;
-
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 public class UdlStructureViewModel extends StructureViewModelBase implements StructureViewModel.ElementInfoProvider {
     public UdlStructureViewModel(@Nullable Editor editor, PsiFile psiFile) {
