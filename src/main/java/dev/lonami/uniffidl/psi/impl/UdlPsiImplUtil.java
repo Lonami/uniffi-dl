@@ -125,7 +125,11 @@ public class UdlPsiImplUtil {
     // Regular operation
 
     public static PsiElement getNameIdentifier(UdlRegularOperation element) {
-        ASTNode node = element.getLastChild().getFirstChild().getFirstChild().getNode().findChildByType(UdlTypes.IDENTIFIER);
+        PsiElement operationName = element.getLastChild().getFirstChild().getFirstChild();
+        if (operationName == null) {
+            return null;
+        }
+        ASTNode node = operationName.getNode().findChildByType(UdlTypes.IDENTIFIER);
         return node != null ? node.getPsi() : null;
     }
 
