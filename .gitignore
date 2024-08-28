@@ -1,6 +1,7 @@
 src/main/gen/
 
 .gradle
+.intellijPlatform
 build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
