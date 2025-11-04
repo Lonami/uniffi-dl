@@ -1,6 +1,7 @@
 plugins {
     id("java")
-    id("org.jetbrains.intellij.platform") version "2.0.1"
+    id("org.jetbrains.kotlin.jvm") version "1.9.24"
+    id("org.jetbrains.intellij.platform") version "2.1.0"
 }
 
 group = "dev.lonami"
@@ -14,6 +15,8 @@ repositories {
 }
 
 dependencies {
+    implementation(kotlin("stdlib"))
+
     intellijPlatform {
         val type = org.jetbrains.intellij.platform.gradle.IntelliJPlatformType.IntellijIdeaCommunity
         val version = providers.gradleProperty("ideaVersion")
@@ -52,6 +55,19 @@ tasks {
         sourceCompatibility = "21"
         targetCompatibility = "21"
     }
+
+    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+        kotlinOptions.jvmTarget = "21"
+    }
 }
 
-sourceSets["main"].java.srcDirs("src/main/gen")
+kotlin {
+    jvmToolchain(21)
+}
+
+sourceSets {
+    main {
+        java.srcDirs("src/main/gen")
+        kotlin.srcDirs("src/main/kotlin")
+    }
+}
