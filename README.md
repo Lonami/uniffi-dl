@@ -1,3 +1,7 @@
+Moved to https://codeberg.org/Lonami/uniffi-dl. The GitHub repository may be deleted in the future.
+
+---
+
 # uniffi-dl
 
 *uniffi-dl* is a plugin designed for the [IntelliJ IDE][idea] (and more precisely one of its other flavours,
